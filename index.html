@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modellsportverein Obermässing e. V. – Modellflug zum Anfassen</title>
+<meta name="description" content="Der Modellsportverein Obermässing e. V. ist die Heimat für alle, die ferngesteuerte Flugmodelle bauen und fliegen. Eigener Flugplatz, Schnupperfliegen, Mitglied werden leicht gemacht.">
+
+<!-- =================================================================
+     SCHRIFTEN
+     Display: Archivo (sportlich-technisch) · Text: Inter · Daten: IBM Plex Mono
+     ================================================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* =================================================================
+   FARBEN & TOKENS  (alle aus dem Vereinslogo abgeleitet)
+   ================================================================= */
+:root{
+  --sky-top:#0c2a4d;      /* tiefes Abendblau, oben */
+  --sky-mid:#1a5680;
+  --sky-low:#5e9cc0;      /* heller Himmel am Horizont */
+  --horizon:#f4b15a;      /* warmer Horizontschein */
+  --orange:#ef8a1c;       /* Logo-Orange */
+  --orange-deep:#d9700a;
+  --teal:#2ba9b8;         /* Kanzel-Türkis aus dem Logo */
+  --ink:#10263b;          /* fast-Marineblau, Fließtext */
+  --ink-soft:#46596d;
+  --paper:#fbf7f0;        /* warmes Weiß, Hintergrund */
+  --cloud:#ffffff;
+  --line:#e8ddcd;         /* Haarlinie */
+  --good:#2f9e54;
+  --warn:#e0982a;
+  --bad:#d6483b;
+
+  --maxw:1180px;
+  --r:16px;               /* Eckenradius */
+  --shadow:0 18px 40px -22px rgba(16,38,59,.45);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Inter",system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:"Archivo",sans-serif;line-height:1.05;letter-spacing:-.01em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.mono{font-family:"IBM Plex Mono",monospace}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+
+/* Eyebrow / kleine Label-Zeile über Überschriften */
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--orange-deep);font-weight:600;
+  display:inline-flex;align-items:center;gap:.6em;
+}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-family:"Archivo",sans-serif;font-weight:700;font-size:.98rem;
+  padding:.85em 1.5em;border-radius:999px;text-decoration:none;
+  border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 22px -10px rgba(239,138,28,.8)}
+.btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:#0a1a29;transform:translateY(-2px)}
+
+/* =================================================================
+   KOPFZEILE / NAVIGATION
+   ================================================================= */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,247,240,.85);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.brand .fallback-logo{
+  width:46px;height:46px;border-radius:50%;background:var(--orange);
+  display:grid;place-items:center;color:#fff;font-family:"Archivo";font-weight:800;font-size:1.1rem;
+}
+.brand b{font-family:"Archivo";font-weight:800;font-size:1.02rem;letter-spacing:-.02em;line-height:1.05}
+.brand span{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:500;letter-spacing:.04em}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink);transition:color .15s}
+.nav-links a:hover{color:var(--orange-deep)}
+.nav .btn{padding:.6em 1.2em;font-size:.9rem}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.2s}
+
+/* =================================================================
+   HERO – der Himmel
+   ================================================================= */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 52%,var(--sky-low) 82%,var(--horizon) 100%);
+  color:#fff;
+  padding-top:64px;padding-bottom:120px;
+}
+/* Sonne / warmer Schein unten rechts */
+.hero::before{
+  content:"";position:absolute;right:-8%;bottom:-30%;width:520px;height:520px;
+  background:radial-gradient(circle,rgba(244,177,90,.55),rgba(244,177,90,0) 65%);
+  pointer-events:none;
+}
+/* feine Sterne oben */
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(1.5px 1.5px at 20% 18%,#fff,transparent),
+                   radial-gradient(1.5px 1.5px at 70% 12%,#fff,transparent),
+                   radial-gradient(1px 1px at 45% 25%,#fff,transparent),
+                   radial-gradient(1px 1px at 88% 30%,#fff,transparent),
+                   radial-gradient(1px 1px at 12% 40%,#fff,transparent);
+}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+
+.hero-copy h1{font-size:clamp(2.5rem,5.2vw,4.1rem);font-weight:800;margin:.5rem 0 .3rem}
+.hero-copy h1 .accent{color:var(--orange);}
+.hero-copy .lead{font-size:1.13rem;color:rgba(255,255,255,.9);max-width:30em;margin-bottom:1.8rem}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .eyebrow{color:#ffd9a8}
+.hero .eyebrow::before{background:var(--orange)}
+
+/* kleine Flieger-Silhouette mit Kondensstreifen */
+.plane{position:absolute;left:8%;top:34%;z-index:1;opacity:.9}
+.contrail{position:absolute;left:0;top:38%;height:2px;width:42%;z-index:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.55));border-radius:2px}
+
+/* =================================================================
+   SIGNATURE: FLUGWETTER-COCKPIT
+   ================================================================= */
+.cockpit{
+  background:rgba(8,22,38,.55);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--r);
+  padding:24px;
+  backdrop-filter:blur(8px);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.6);
+}
+.cockpit-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.cockpit-head .ttl{font-family:"IBM Plex Mono";font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.live-dot{display:inline-flex;align-items:center;gap:6px;font-family:"IBM Plex Mono";font-size:.7rem;color:rgba(255,255,255,.7)}
+.live-dot i{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 rgba(47,158,84,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,158,84,.6)}70%{box-shadow:0 0 0 8px rgba(47,158,84,0)}100%{box-shadow:0 0 0 0 rgba(47,158,84,0)}}
+
+.gauge{display:grid;grid-template-columns:128px 1fr;gap:22px;align-items:center}
+/* Windrose */
+.compass{position:relative;width:128px;height:128px}
+.compass svg{width:100%;height:100%}
+.needle{transform-origin:64px 64px;transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.compass .lbl{fill:rgba(255,255,255,.55);font-family:"IBM Plex Mono";font-size:11px;font-weight:600}
+
+.readout .verdict{
+  display:inline-flex;align-items:center;gap:.5em;font-family:"Archivo";font-weight:700;font-size:1.15rem;
+  padding:.35em .8em;border-radius:999px;margin-bottom:.6rem;
+}
+.readout .verdict.good{background:rgba(47,158,84,.18);color:#7fe3a3;border:1px solid rgba(47,158,84,.5)}
+.readout .verdict.warn{background:rgba(224,152,42,.18);color:#ffce85;border:1px solid rgba(224,152,42,.5)}
+.readout .verdict.bad{background:rgba(214,72,59,.18);color:#ff9b91;border:1px solid rgba(214,72,59,.5)}
+.readout .verdict.idle{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2)}
+
+.metrics{display:flex;gap:26px;flex-wrap:wrap}
+.metric .v{font-family:"IBM Plex Mono";font-weight:600;font-size:1.5rem;color:#fff;line-height:1}
+.metric .v small{font-size:.85rem;color:rgba(255,255,255,.55);font-weight:400}
+.metric .k{font-size:.72rem;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:3px}
+
+/* Mini-Vorschau nächste Stunden */
+.hours{display:flex;gap:10px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12)}
+.hours .h{flex:1;text-align:center}
+.hours .h .bar{height:46px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:6px}
+.hours .h .bar i{width:8px;background:linear-gradient(180deg,var(--teal),#1a7a86);border-radius:4px;display:block;transition:height .6s ease}
+.hours .h .t{font-family:"IBM Plex Mono";font-size:.66rem;color:rgba(255,255,255,.6)}
+.hours .h .s{font-family:"IBM Plex Mono";font-size:.72rem;color:#fff;font-weight:600}
+.cockpit-foot{font-family:"IBM Plex Mono";font-size:.66rem;color:rgba(255,255,255,.4);margin-top:14px;text-align:right}
+
+/* =================================================================
+   INSTRUMENTEN-STREIFEN (Eckdaten)
+   ================================================================= */
+.strip{background:var(--ink);color:#fff}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;padding-block:0}
+.strip .cell{padding:30px 8px;text-align:center;position:relative}
+.strip .cell:not(:last-child)::after{content:"";position:absolute;right:0;top:24%;height:52%;width:1px;background:rgba(255,255,255,.14)}
+.strip .v{font-family:"Archivo";font-weight:800;font-size:2rem;color:var(--orange)}
+.strip .k{font-size:.78rem;color:rgba(255,255,255,.65);letter-spacing:.04em;margin-top:4px}
+
+/* =================================================================
+   ABSCHNITTE allgemein
+   ================================================================= */
+.section{padding-block:88px}
+.section-head{max-width:46em;margin-bottom:48px}
+.section-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:700;margin:.6rem 0 .8rem}
+.section-head p{color:var(--ink-soft);font-size:1.08rem}
+
+/* MITGLIED WERDEN – 3 Schritte (echte Reihenfolge → Nummern sind gerechtfertigt) */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:var(--cloud);border:1px solid var(--line);border-radius:var(--r);padding:30px;position:relative;overflow:hidden}
+.step .num{font-family:"Archivo";font-weight:800;font-size:3.4rem;color:var(--orange);opacity:.22;line-height:1;position:absolute;top:14px;right:22px}
+.step h3{font-size:1.25rem;margin:0 0 .5rem;position:relative}
+.step p{color:var(--ink-soft);font-size:.96rem;position:relative}
+.step .icon{width:42px;height:42px;border-radius:12px;background:rgba(43,169,184,.12);display:grid;place-items:center;margin-bottom:16px;color:var(--teal)}
+.steps-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.steps-note{color:var(--ink-soft);font-size:.9rem}
+
+/* ÜBER UNS */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about .photo{aspect-ratio:4/3;border-radius:var(--r);background:
+   linear-gradient(135deg,var(--sky-mid),var(--sky-low));
+   display:grid;place-items:center;color:rgba(255,255,255,.85);text-align:center;
+   border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow)}
+.about .photo .ph{font-family:"IBM Plex Mono";font-size:.8rem;letter-spacing:.1em;padding:20px}
+.about h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin:.6rem 0 1rem}
+.about p{color:var(--ink-soft);margin-bottom:1rem}
+.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.tag{font-size:.82rem;font-weight:600;padding:.4em .9em;border-radius:999px;background:rgba(239,138,28,.12);color:var(--orange-deep)}
+
+/* FLUGPLATZ + KARTE */
+.field{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.field-info .rule{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.field-info .rule:first-of-type{border-top:1px solid var(--line)}
+.field-info .rule .ic{flex:0 0 auto;width:34px;height:34px;border-radius:9px;background:rgba(43,169,184,.12);display:grid;place-items:center;color:var(--teal)}
+.field-info .rule b{display:block;font-family:"Archivo";font-size:1rem}
+.field-info .rule span{font-size:.92rem;color:var(--ink-soft)}
+.map-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--cloud)}
+.map-card iframe{width:100%;height:380px;border:0;display:block}
+.map-card .map-foot{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.map-card .map-foot span{font-size:.86rem;color:var(--ink-soft)}
+
+/* TERMINE */
+.events{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.event{background:var(--cloud);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;gap:18px;align-items:flex-start}
+.event .date{flex:0 0 auto;text-align:center;background:var(--ink);color:#fff;border-radius:12px;padding:10px 14px;min-width:64px}
+.event .date .d{font-family:"Archivo";font-weight:800;font-size:1.5rem;line-height:1}
+.event .date .m{font-family:"IBM Plex Mono";font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--orange)}
+.event h3{font-size:1.1rem;margin-bottom:.3rem}
+.event p{font-size:.9rem;color:var(--ink-soft)}
+
+/* CTA-BAND */
+.band{background:linear-gradient(120deg,var(--orange),var(--orange-deep));color:#fff}
+.band .wrap{padding-block:64px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.band h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.band p{color:rgba(255,255,255,.92);max-width:32em;margin-top:.4rem}
+
+/* FUSSZEILE */
+.footer{background:var(--ink);color:rgba(255,255,255,.75);padding-block:56px 28px}
+.footer .grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer h4{font-family:"Archivo";color:#fff;font-size:.95rem;margin-bottom:16px;letter-spacing:.02em}
+.footer a{text-decoration:none;color:rgba(255,255,255,.72);font-size:.92rem;display:block;padding:5px 0;transition:color .15s}
+.footer a:hover{color:var(--orange)}
+.footer .foot-brand p{font-size:.92rem;margin-top:14px;max-width:26em}
+.footer .foot-brand .brand b{color:#fff}
+.footer .foot-brand .brand span{color:rgba(255,255,255,.6)}
+.footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.5)}
+.footer .legal a{display:inline;color:rgba(255,255,255,.6)}
+
+/* =================================================================
+   SCROLL-REVEAL & RESPONSIVE
+   ================================================================= */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:920px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .about,.field{grid-template-columns:1fr;gap:32px}
+  .strip .wrap{grid-template-columns:repeat(2,1fr)}
+  .strip .cell:nth-child(2)::after{display:none}
+  .steps,.events{grid-template-columns:1fr}
+  .footer .grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+  .nav-links{position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;
+    padding:8px 24px 24px;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .25s ease;align-items:stretch}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:14px 0;border-bottom:1px solid var(--line)}
+  .nav-links .btn{margin-top:12px;justify-content:center}
+  .nav-toggle{display:block}
+  .hero{padding-bottom:80px}
+  .gauge{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .metrics{justify-content:center}
+  .footer .grid{grid-template-columns:1fr}
+  .plane{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Modellsportverein Obermässing – Startseite">
+      <img src="logo.jpg" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+      <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#verein">Verein</a></li>
+        <li><a href="#mitglied">Mitglied werden</a></li>
+        <li><a href="#flugplatz">Flugplatz</a></li>
+        <li><a href="#termine">Termine</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a class="btn btn-primary" href="#mitglied">Schnuppern&nbsp;→</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navtoggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============================= HERO ============================= -->
+<main id="top">
+<section class="hero">
+  <!-- Kondensstreifen + Flieger-Silhouette -->
+  <div class="contrail" aria-hidden="true"></div>
+  <svg class="plane" width="74" height="30" viewBox="0 0 74 30" aria-hidden="true">
+    <path d="M2 16 L46 13 L60 4 L64 5 L56 14 L70 13 L73 15 L70 17 L56 16 L64 26 L60 27 L46 17 L2 17 Z" fill="#ffffff" opacity=".92"/>
+  </svg>
+
+  <div class="wrap">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">Modellsportverein Obermässing&nbsp;e.&nbsp;V.</span>
+      <h1>Fliegen lernen.<br>Bauen.<br><span class="accent">Dazugehören.</span></h1>
+      <p class="lead">Wir bauen und fliegen ferngesteuerte Flugmodelle – auf unserem eigenen Logenplatz hoch über Obermässing. Vom ersten Schnupperflug bis zum selbst gebauten Modell: Komm vorbei, schau zu, greif zum Sender.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#mitglied">Mitglied werden</a>
+        <a class="btn btn-ghost" href="#flugplatz">Zum Flugplatz finden</a>
+      </div>
+    </div>
+
+    <!-- ======= SIGNATURE: LIVE-FLUGWETTER ======= -->
+    <div class="cockpit reveal" id="flugwetter" role="region" aria-label="Aktuelles Flugwetter am Platz">
+      <div class="cockpit-head">
+        <div class="ttl">Flugwetter · am Platz</div>
+        <div class="live-dot"><i></i><span id="live-state">live</span></div>
+      </div>
+
+      <div class="gauge">
+        <!-- Windrose -->
+        <div class="compass" aria-hidden="true">
+          <svg viewBox="0 0 128 128">
+            <circle cx="64" cy="64" r="60" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+            <circle cx="64" cy="64" r="48" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1"/>
+            <text class="lbl" x="64" y="16" text-anchor="middle">N</text>
+            <text class="lbl" x="116" y="68" text-anchor="middle">O</text>
+            <text class="lbl" x="64" y="120" text-anchor="middle">S</text>
+            <text class="lbl" x="12" y="68" text-anchor="middle">W</text>
+            <g class="needle" id="needle">
+              <path d="M64 22 L72 64 L64 58 L56 64 Z" fill="var(--orange)"/>
+              <path d="M64 106 L72 64 L64 70 L56 64 Z" fill="rgba(255,255,255,.35)"/>
+            </g>
+            <circle cx="64" cy="64" r="5" fill="#fff"/>
+          </svg>
+        </div>
+
+        <div class="readout">
+          <span class="verdict idle" id="verdict">Lade Wetterdaten …</span>
+          <div class="metrics">
+            <div class="metric"><div class="v" id="wind">–<small> km/h</small></div><div class="k">Wind</div></div>
+            <div class="metric"><div class="v" id="gust">–<small> km/h</small></div><div class="k">Böen</div></div>
+            <div class="metric"><div class="v" id="dir">–</div><div class="k">Richtung</div></div>
+            <div class="metric"><div class="v" id="temp">–<small> °C</small></div><div class="k">Temperatur</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- nächste Stunden -->
+      <div class="hours" id="hours" aria-hidden="true"></div>
+      <div class="cockpit-foot" id="wx-foot">Quelle: Open-Meteo</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ECKDATEN-STREIFEN ===================== -->
+<section class="strip" aria-label="Verein in Zahlen">
+  <div class="wrap">
+    <div class="cell"><div class="v">2007</div><div class="k">gegründet</div></div>
+    <div class="cell"><div class="v">???</div><div class="k">Mitglieder</div></div>
+    <div class="cell"><div class="v">110&nbsp;m</div><div class="k">Graspiste</div></div>
+    <div class="cell"><div class="v">DMFV</div><div class="k">Dachverband</div></div>
+  </div>
+</section>
+
+<!-- ===================== MITGLIED WERDEN ===================== -->
+<section class="section" id="mitglied">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">In drei Schritten</span>
+      <h2>Mitglied werden</h2>
+      <p>Früher hieß das: zum Platz fahren, hoffen jemanden anzutreffen, Formular holen, wiederkommen. Wir machen das jetzt anders.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">1</span>
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+        </div>
+        <h3>Melde dich</h3>
+        <p>Schreib uns kurz per Formular oder E-Mail, wer du bist und ob du eher zuschauen oder selbst fliegen willst. Wir melden uns mit einem Termin.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">2</span>
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M5 8l14 0"/><path d="M4 22l8-14 8 14"/></svg>
+        </div>
+        <h3>Komm zum Schnuppern</h3>
+        <p>An einem Flugtag zeigen wir dir den Platz, die Modelle und – wenn du magst – fliegst du mit einem Lehrer-Schüler-Sender selbst die ersten Runden.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">3</span>
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Flieg los</h3>
+        <p>Aufnahmeantrag abgeben, Versicherung & Kenntnisnachweis laufen über den Verband. Danach gehört der Platz auch dir.</p>
+      </div>
+    </div>
+
+    <div class="steps-cta reveal">
+      <a class="btn btn-dark" href="#" data-placeholder>Aufnahmeantrag herunterladen (PDF)</a>
+      <a class="btn btn-primary" href="#kontakt">Jetzt anfragen</a>
+      <span class="steps-note">Jugendliche unter 18 brauchen die Unterschrift eines Erziehungsberechtigten.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ÜBER DEN VEREIN ===================== -->
+<section class="section" id="verein" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap about">
+    <div class="reveal">
+      <span class="eyebrow">Über uns</span>
+      <h2>Eine Werkstatt, ein Platz, eine Leidenschaft</h2>
+      <p>Beim Modellsportverein Obermässing treffen sich Menschen, die etwas mit den Händen bauen und in die Luft bringen wollen. Segler, Motormaschinen, Elektroflieger. Von der fertigen Schaumwaffel bis zum Eigenbau aus Balsa und Sperrholz ist alles dabei.</p>
+      <p>Wir sind ein überschaubarer Verein, in dem jeder jeden kennt. Genau das ist der Vorteil: Wer anfängt, fliegt nicht allein, sondern bekommt jemanden an die Seite, der schon ein paar Crashs hinter sich hat.</p>
+      <div class="tags">
+        <span class="tag">Segelflug</span>
+        <span class="tag">Elektroflug</span>
+        <span class="tag">Verbrenner</span>
+        <span class="tag">Eigenbau</span>
+        <span class="tag">Jugendförderung?</span>
+      </div>
+    </div>
+    <div class="photo reveal">
+	  <img src="platz.jpg" alt="Ein winderschönes Modellflugzeug am Hofberg" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px;">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FLUGPLATZ + KARTE ===================== -->
+<section class="section" id="flugplatz">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Der Flugplatz</span>
+      <h2>So findest du zu uns</h2>
+      <p>Unser Platz thront auf dem Hofberg – ideal zum Fliegen, weniger ideal zum Finden. Darum hier ganz genau.</p>
+      <p>Kleiner Insider-Tipp: Wer uns mit dem Fahrrad besuchen will, sollte Waden aus Stahl oder einen E-Motor mitbringen!</p>
+    </div>
+
+    <div class="field">
+      <div class="field-info reveal">
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Adresse / Anfahrt</b><span>Hobergstraße, 91171 Greding-Obermässing. Vor der Burg scharfe Rechtskurve, 1000&nbsp;m am Waldrand entlang &#8230</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b>Flugzeiten</b><span>Mo–Sa nach Lärmschutz?; Was sagt die Platzordnung?</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="5" y="9" width="14" height="11" rx="2"/></svg></span>
+          <div><b>Vor dem ersten Flug</b><span>Gültige Modellflug-Versicherung und ggf. Kenntnisnachweis (EU-Drohnenverordnung). Beides organisieren wir über den Dachverband.</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></span>
+          <div><b>Gäste willkommen</b><span>Zuschauen ist jederzeit erlaubt. An Flugtagen (Sonntag Vormittag) ist fast immer jemand da, der gern erklärt.</span></div>
+        </div>
+      </div>
+
+      <div class="map-card reveal">
+        <!-- OpenStreetMap-Einbettung: datenschutzfreundlich, kein API-Key. -->
+        <iframe
+          title="Karte: Flugplatz Obermässing"
+          loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=11.254248619079592%2C49.112927908599254%2C11.325917243957521%2C49.13741730707913&amp;layer=mapnik&amp;marker=49.12517411964987%2C11.290082931518555">
+        </iframe>
+        <div class="map-foot">
+          <a class="btn btn-primary" style="padding:.5em 1em;font-size:.85rem"
+             href="https://www.openstreetmap.org/?mlat=49.1249064&mlon=11.2895809#map=15/49.1249064/11.2895809"
+             target="_blank" rel="noopener">Route planen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TERMINE ===================== -->
+<section class="section" id="termine" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Was ansteht</span>
+      <h2>Termine &amp; Flugtage</h2>
+      <!-- <p>Komm einfach vorbei – an diesen Tagen ist garantiert Betrieb am Platz.</p> -->
+    </div>
+    <div class="events">
+      <div class="event reveal">
+        <div class="date"><div class="d">21</div><div class="m">Dezember</div></div>
+        <div><h3>Adventsfliegen</h3><p>Mit Grillbratwurst und natürlich Glühwein.</p></div>
+      </div>
+      <div class="event reveal">
+        <div class="date"><div class="d">21</div><div class="m">Jun</div></div>
+        <div><h3>Schnupperfliegen</h3><p>Mitfliegen am Lehrer-Schüler-Sender.</p></div>
+      </div>
+      <div class="event reveal">
+        <div class="date"><div class="d">13</div><div class="m">Sep</div></div>
+        <div><h3>Vereinspokal</h3><p>Kategorie: Spektakulärster Crash.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA-BAND ===================== -->
+<section class="band" id="kontakt">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>Neugierig geworden?</h2>
+      <p>Schreib uns oder komm an einem Flugtag vorbei. Der erste Besuch kostet nichts außer ein bisschen Zeit und die Fahrt mitten ins Grüne.</p>
+    </div>
+    <div class="reveal" style="display:flex;gap:14px;flex-wrap:wrap">
+      <a class="btn btn-dark" href="mailto:info@msv-obermaessing.de">E-Mail schreiben</a>
+      <a class="btn btn-ghost" href="#" data-placeholder>Zur Facebook-Gruppe</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================== FUSSZEILE ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <img src="logo.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+          <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+        </a>
+        <p>Modellflug, Eigenbau und ein Platz unter offenem Himmel, mitten in Mittelfranken.</p>
+      </div>
+      <div>
+        <h4>Verein</h4>
+        <a href="#verein">Über uns</a>
+        <a href="#mitglied">Mitglied werden</a>
+        <a href="#termine">Termine</a>
+        <a href="#" data-placeholder>Vorstand</a>
+      </div>
+      <div>
+        <h4>Am Platz</h4>
+        <a href="#flugplatz">Anfahrt</a>
+        <a href="#" data-placeholder>Platzordnung</a>
+        <a href="#flugwetter">Flugwetter</a>
+        <a href="#" data-placeholder>Sicherheit</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a>
+        <a href="#" data-placeholder>Facebook-Gruppe</a>
+        <a href="#kontakt">Anfrage stellen</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="year"></span> Modellsportverein Obermässing e.&nbsp;V.</span>
+      <span>
+        <a href="#" data-placeholder>Impressum</a> ·
+        <a href="#" data-placeholder>Datenschutz</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =================================================================
+   1) FLUGPLATZ-KOORDINATEN  ←  HIER DEN ECHTEN PLATZ EINTRAGEN
+   ================================================================= */
+const FELD = { lat: 49.1249064, lon: 11.2895809 };   // Obermässing (Näherung)
+
+/* Schwellenwerte für die Flug-Ampel – bei Bedarf anpassen (km/h, Böen).
+   Kleine Schaum-/Segelmodelle vertragen weniger als große Maschinen. */
+const AMPEL = { gut: 18, grenz: 30 };
+
+/* =================================================================
+   2) LIVE-FLUGWETTER von Open-Meteo (kostenlos, ohne API-Key)
+   ================================================================= */
+function gradZuRichtung(d){
+  const r=["N","NO","O","SO","S","SW","W","NW"];
+  return r[Math.round(d/45)%8];
+}
+
+async function ladeFlugwetter(){
+  const url = `https://api.open-meteo.com/v1/forecast`
+    + `?latitude=${FELD.lat}&longitude=${FELD.lon}`
+    + `&current=temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,weather_code`
+    + `&hourly=wind_speed_10m,wind_gusts_10m`
+    + `&wind_speed_unit=kmh&timezone=auto&forecast_days=1`;
+  try{
+    const r = await fetch(url);
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const d = await r.json();
+    const c = d.current;
+    const wind = Math.round(c.wind_speed_10m);
+    const gust = Math.round(c.wind_gusts_10m);
+    const dir  = Math.round(c.wind_direction_10m);
+    const temp = Math.round(c.temperature_2m);
+
+    // Werte setzen
+    document.getElementById("wind").innerHTML = wind + '<small> km/h</small>';
+    document.getElementById("gust").innerHTML = gust + '<small> km/h</small>';
+    document.getElementById("dir").textContent  = gradZuRichtung(dir) + " " + dir + "°";
+    document.getElementById("temp").innerHTML = temp + '<small> °C</small>';
+
+    // Windrose drehen (Pfeil zeigt, woher der Wind kommt)
+    document.getElementById("needle").style.transform = `rotate(${dir}deg)`;
+
+    // Ampel
+    const v = document.getElementById("verdict");
+    v.classList.remove("idle","good","warn","bad");
+    if(gust <= AMPEL.gut){ v.className="verdict good"; v.textContent="Flugtauglich"; }
+    else if(gust <= AMPEL.grenz){ v.className="verdict warn"; v.textContent="Grenzwertig – für Geübte"; }
+    else { v.className="verdict bad"; v.textContent="Heute lieber Hangar"; }
+
+    // nächste Stunden (ab jetzt, 6 Schritte)
+    const now = new Date();
+    const hrs = d.hourly.time;
+    let start = hrs.findIndex(t => new Date(t) >= now);
+    if(start < 0) start = 0;
+    const box = document.getElementById("hours");
+    const slice = [];
+    for(let i=start;i<start+6 && i<hrs.length;i++) slice.push(i);
+    const maxG = Math.max(...slice.map(i=>d.hourly.wind_gusts_10m[i]),1);
+    box.innerHTML = slice.map(i=>{
+      const g = Math.round(d.hourly.wind_gusts_10m[i]);
+      const h = new Date(hrs[i]).getHours();
+      const ph = Math.max(8, Math.round(g/maxG*46));
+      return `<div class="h"><div class="bar"><i style="height:${ph}px"></i></div>`
+           + `<div class="s">${g}</div><div class="t">${String(h).padStart(2,"0")}h</div></div>`;
+    }).join("");
+
+    document.getElementById("live-state").textContent = "live";
+    document.getElementById("wx-foot").textContent =
+      "Böen in km/h · Quelle: Open-Meteo · " + new Date().toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+  }catch(err){
+    // Sanfter Rückfall, falls keine Verbindung (z.B. in der Vorschau)
+    const v = document.getElementById("verdict");
+    v.className = "verdict idle";
+    v.textContent = "Wetterdaten gerade nicht erreichbar";
+    document.getElementById("live-state").textContent = "offline";
+    document.getElementById("wx-foot").textContent = "Live-Daten erscheinen, sobald die Seite online ist.";
+  }
+}
+ladeFlugwetter();
+
+/* =================================================================
+   3) Mobiles Menü
+   ================================================================= */
+const toggle = document.getElementById("navtoggle");
+const links  = document.getElementById("navlinks");
+toggle.addEventListener("click", ()=>{
+  const open = links.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", open);
+});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
+
+/* =================================================================
+   4) Scroll-Reveal
+   ================================================================= */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* Jahr in der Fußzeile */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Platzhalter-Links abfangen, damit nichts ins Leere klickt */
+document.querySelectorAll('[data-placeholder]').forEach(a=>{
+  a.addEventListener("click",e=>{ e.preventDefault();
+    a.dataset.note || (a.dataset.note="1");
+  });
+});
+</script>
+</body>
+</html>
