@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+<!-- Uploadcare File Uploader -->
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css">
+<script type="module">
+  import * as UC from "https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/file-uploader.min.js";
+  UC.defineComponents(UC);
+</script>
 <!-- Schützt vor Suchmaschinen (wie Startseite) – später entfernen, wenn die Seite gefunden werden soll -->
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
@@ -422,7 +429,7 @@ img{max-width:100%;display:block}
 <!-- ============================ HEADER ============================ -->
 <header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="index.html#top" aria-label="Modellsportverein Obermässing – Startseite">
+    <a class="brand" href="index.html" aria-label="Modellsportverein Obermässing – Startseite">
       <img src="logo.jpg" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
       <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
     </a>
@@ -466,80 +473,68 @@ img{max-width:100%;display:block}
       <!-- Erfolgsmeldung (erscheint nach erfolgreichem Absenden via ?gesendet=1) -->
       <div class="success-banner" id="successBanner" role="status">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e6b3a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
-        <div><b>Danke, deine Nachricht ist unterwegs!</b><span>Wir melden uns so bald wie möglich bei dir – schau auch ins Spam-Postfach, falls du eine Bestätigung erwartest.</span></div>
+        <div><b>Danke, deine Nachricht ist unterwegs!</b><span>Wir melden uns so bald wie möglich bei dir. Schau auch ins Spam-Postfach, falls du eine Bestätigung erwartest.</span></div>
       </div>
 
       <h2>Nachricht an den Verein</h2>
       <p class="intro">Felder mit <span class="req">*</span> brauchen wir, der Rest hilft uns nur, dir schneller passend zu antworten. Du kannst auch gleich Fotos oder Unterlagen (z.&nbsp;B. einen ausgefüllten Aufnahmeantrag) anhängen.</p>
 
       <!-- WICHTIG: Ersetzen Sie FORM-ID-VON-FORMSPARK mit Ihrer echten ID aus dem Formspark-Dashboard -->
-	  <form id="tCE0SbX1n"
-            action="https://submit-form.com"
-            method="POST"
-            enctype="multipart/form-data">
+        <form id="kontaktForm"
+			  action="https://submit-form.com/tCE0SbX1n"
+			  method="POST">
 
-        <!-- Formspark-Steuerfelder -->
-        <input type="hidden" name="_subject" value="Neue Anfrage über die Vereins-Webseite">
-		<input type="hidden" name="_redirect" value="https://woelki.github.io/MSV-Webseite/kontakt.html?gesendet=1">
-  
-        <!-- Spam-Falle: von Menschen nie ausgefüllt -->
-        <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+		  <!-- Formspark-Steuerfelder -->
+		  <input type="hidden" name="_subject" value="Neue Anfrage über die Vereins-Webseite">
+		  <input type="hidden" name="_redirect" value="https://woelki.github.io/MSV-Webseite/kontakt.html?gesendet=1">
 
-        <div class="form-row">
-          <div class="fld">
-            <label for="name">Name <span class="req">*</span></label>
-            <input type="text" id="name" name="name" autocomplete="name" required placeholder="Vor- und Nachname">
-          </div>
-          <div class="fld">
-            <label for="email">E-Mail <span class="req">*</span></label>
-            <input type="email" id="email" name="email" autocomplete="email" required placeholder="name@beispiel.de">
-          </div>
-        </div>
+		  <!-- Spam-Falle: jetzt als Checkbox, damit Autofill sie nicht auslöst -->
+		  <input type="checkbox" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <div class="form-row">
-          <div class="fld">
-            <label for="telefon">Telefon <span class="hint" style="display:inline">(optional)</span></label>
-            <input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="Für Rückruf, falls gewünscht">
-          </div>
-          <div class="fld">
-            <label for="anliegen">Worum geht's? <span class="req">*</span></label>
-            <select id="anliegen" name="anliegen" required>
-              <option value="" disabled selected>Bitte auswählen …</option>
-              <option>Schnupperfliegen</option>
-              <option>Mitglied werden</option>
-              <option>Allgemeine Frage</option>
-              <option>Presse &amp; Medien</option>
-              <option>Sonstiges</option>
-            </select>
-          </div>
-        </div>
+		  <div class="form-row">
+			<div class="fld">
+			  <label for="name">Name <span class="req">*</span></label>
+			  <input type="text" id="name" name="name" autocomplete="name" required placeholder="">
+			</div>
+			<div class="fld">
+			  <label for="email">E-Mail <span class="req">*</span></label>
+			  <input type="email" id="email" name="email" autocomplete="email" required placeholder="">
+			</div>
+		  </div>
 
-        <div class="fld">
-          <label for="nachricht">Deine Nachricht <span class="req">*</span></label>
-          <textarea id="nachricht" name="nachricht" required placeholder="Erzähl uns kurz, wer du bist und was dich interessiert. Zuschauen oder selbst fliegen? Schon Erfahrung oder kompletter Anfänger? Alles willkommen."></textarea>
-        </div>
+		  <div class="form-row">
+			<div class="fld">
+			  <label for="telefon">Telefon <span class="hint" style="display:inline">(optional)</span></label>
+			  <input type="tel" id="telefon" name="telefon" autocomplete="tel" placeholder="">
+			</div>
+			<div class="fld">
+			  <label for="anliegen">Worum geht's? <span class="req">*</span></label>
+			  <select id="anliegen" name="anliegen" required>
+				<option value="" disabled selected>Bitte auswählen …</option>
+				<option>Schnupperfliegen</option>
+				<option>Mitglied werden</option>
+				<option>Allgemeine Frage</option>
+				<option>Presse &amp; Medien</option>
+				<option>Sonstiges</option>
+			  </select>
+			</div>
+		  </div>
 
-        <div class="fld">
-          <label>Anhänge <span class="hint" style="display:inline">(optional · z.&nbsp;B. Antrag, Fotos · max. 10&nbsp;MB gesamt)</span></label>
-          <label class="filedrop" id="filedrop" for="attachment">
-            <svg class="fd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 20h16"/></svg>
-            <div class="fd-main">Datei auswählen oder hierher ziehen</div>
-            <input type="file" id="attachment" name="attachment" multiple accept=".pdf,.jpg,.jpeg,.png,image/*,application/pdf">
-          </label>
-          <ul class="filelist" id="filelist"></ul>
-          <div class="size-warn" id="sizeWarn">Die Dateien zusammen sind größer als 10&nbsp;MB. Bitte entferne etwas oder schick große Dateien separat per E-Mail.</div>
-        </div>
+		  <div class="fld">
+			<label for="nachricht">Deine Nachricht <span class="req">*</span></label>
+			<textarea id="nachricht" name="nachricht" required placeholder=""></textarea>
+		  </div>
 
-        <div class="consent">
-          <input type="checkbox" id="datenschutz" name="datenschutz_einwilligung" value="ja" required>
-          <label for="datenschutz">Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. Mehr dazu in der <a href="index.html#" data-placeholder>Datenschutzerklärung</a>. <span class="req">*</span></label>
-        </div>
+		  <div class="consent">
+			<input type="checkbox" id="datenschutz" name="datenschutz_einwilligung" value="ja" required>
+			<label for="datenschutz">Ich bin einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage gespeichert und verarbeitet werden. Mehr dazu in der <a href="datenschutz.html">Datenschutzerklärung</a>. <span class="req">*</span></label>
+		  </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">Anfrage absenden →</button>
-          <span class="note">Wir geben deine Daten nicht weiter.</span>
-        </div>
-      </form>
+		  <div class="form-actions">
+			<button type="submit" class="btn btn-primary">Anfrage absenden →</button>
+			<span class="note">Wir geben deine Daten nicht weiter.</span>
+		  </div>
+		</form>
     </div>
 
     <!-- ----- Seitenspalte ----- -->
@@ -580,7 +575,7 @@ img{max-width:100%;display:block}
   <div class="wrap">
     <div class="grid">
       <div class="foot-brand">
-        <a class="brand" href="index.html#top">
+        <a class="brand" href="index.html">
           <img src="logo.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
           <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
         </a>
@@ -648,67 +643,6 @@ if (new URLSearchParams(location.search).get("gesendet") === "1") {
   b.scrollIntoView({behavior:"smooth", block:"center"});
   history.replaceState(null, "", location.pathname);   // Parameter aus der URL putzen
 }
-
-/* ===== Datei-Upload: Liste anzeigen + 10-MB-Grenze prüfen ===== */
-const MAXBYTES = 10 * 1024 * 1024;
-const fileInput = document.getElementById("attachment");
-const fileList  = document.getElementById("filelist");
-const sizeWarn  = document.getElementById("sizeWarn");
-const filedrop  = document.getElementById("filedrop");
-
-function fmt(bytes){
-  if (bytes < 1024) return bytes + " B";
-  if (bytes < 1024*1024) return (bytes/1024).toFixed(0) + " KB";
-  return (bytes/1024/1024).toFixed(1) + " MB";
-}
-function renderFiles(){
-  fileList.innerHTML = "";
-  const files = Array.from(fileInput.files);
-  let total = 0;
-  files.forEach((f, i)=>{
-    total += f.size;
-    const li = document.createElement("li");
-    li.innerHTML = '<span class="fname"></span><span class="fsize"></span><button type="button" aria-label="Entfernen">&times;</button>';
-    li.querySelector(".fname").textContent = f.name;
-    li.querySelector(".fsize").textContent = fmt(f.size);
-    li.querySelector("button").addEventListener("click", ()=>removeFile(i));
-    fileList.appendChild(li);
-  });
-  sizeWarn.classList.toggle("show", total > MAXBYTES);
-}
-/* Einzelne Datei wieder entfernen (über DataTransfer neu zusammensetzen) */
-function removeFile(index){
-  const dt = new DataTransfer();
-  Array.from(fileInput.files).forEach((f,i)=>{ if(i!==index) dt.items.add(f); });
-  fileInput.files = dt.files;
-  renderFiles();
-}
-fileInput.addEventListener("change", renderFiles);
-
-/* Drag & Drop auf die Fläche */
-["dragenter","dragover"].forEach(ev=>filedrop.addEventListener(ev,e=>{
-  e.preventDefault(); filedrop.classList.add("drag");
-}));
-["dragleave","drop"].forEach(ev=>filedrop.addEventListener(ev,e=>{
-  e.preventDefault(); filedrop.classList.remove("drag");
-}));
-filedrop.addEventListener("drop", e=>{
-  const dt = new DataTransfer();
-  Array.from(fileInput.files).forEach(f=>dt.items.add(f));
-  Array.from(e.dataTransfer.files).forEach(f=>dt.items.add(f));
-  fileInput.files = dt.files;
-  renderFiles();
-});
-
-/* Sicherheitsnetz: zu große Anhänge nicht abschicken lassen */
-document.getElementById("kontaktForm").addEventListener("submit", e=>{
-  const total = Array.from(fileInput.files).reduce((s,f)=>s+f.size,0);
-  if (total > MAXBYTES){
-    e.preventDefault();
-    sizeWarn.classList.add("show");
-    sizeWarn.scrollIntoView({behavior:"smooth", block:"center"});
-  }
-});
 </script>
 
 </body>
