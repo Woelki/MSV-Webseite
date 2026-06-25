@@ -87,7 +87,7 @@ img{max-width:100%;display:block}
    ================================================================= */
 .site-header{
   position:sticky;top:0;z-index:50;
-  background:rgba(251,247,240,.85);backdrop-filter:blur(10px);
+  background:var(--paper);            /* solide, kein Blur -> keine Kompositions-Artefakte */
   border-bottom:1px solid var(--line);
 }
 .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
@@ -291,14 +291,12 @@ img{max-width:100%;display:block}
 }
 @media (max-width:680px){
   /* Kopfzeile auf dem Handy deckend -> kein Durchscheinen/Ghosting mehr */
-  .site-header{background:var(--paper)}
   .nav-links{
     position:fixed;top:72px;left:0;right:0;
     background:var(--paper);
     flex-direction:column;gap:0;align-items:stretch;
     padding:8px 24px 24px;
-    border-top:1px solid var(--line);
-    box-shadow:0 16px 30px -18px rgba(16,38,59,.45);
+    border-top:1px solid var(--line);   /* saubere 1px-Kante, kein Schatten */
     max-height:calc(100dvh - 72px);overflow-y:auto;
     transform:translateY(-130%);transition:transform .25s ease}
   .nav-links.open{transform:none}
