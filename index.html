@@ -296,10 +296,12 @@ img{max-width:100%;display:block}
     background:var(--paper);
     flex-direction:column;gap:0;align-items:stretch;
     padding:8px 24px 24px;
-    border-top:1px solid var(--line);   /* saubere 1px-Kante, kein Schatten */
+    border-top:1px solid var(--line);
     max-height:calc(100dvh - 72px);overflow-y:auto;
-    transform:translateY(-130%);transition:transform .25s ease}
-  .nav-links.open{transform:none}
+    /* kein transform -> keine Kompositions-Ebene -> saubere Linien */
+    opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .2s ease, visibility .2s ease}
+  .nav-links.open{opacity:1;visibility:visible;pointer-events:auto}
   .nav-links a{padding:14px 0;border-bottom:1px solid var(--line)}
   .nav-links .btn{margin-top:12px;justify-content:center}
   .nav-toggle{display:block}
