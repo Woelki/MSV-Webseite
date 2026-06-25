@@ -276,6 +276,11 @@ img{max-width:100%;display:block}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 
+/* Deko-Flieger + Kondensstreifen nur dort zeigen, wo Platz ist,
+   sonst überlappen sie bei schmalen/erzwungenen Desktop-Ansichten den Titel */
+@media (max-width:1080px){
+  .plane,.contrail{display:none}
+}
 @media (max-width:920px){
   .hero .wrap{grid-template-columns:1fr;gap:40px}
   .about,.field{grid-template-columns:1fr;gap:32px}
@@ -285,8 +290,17 @@ img{max-width:100%;display:block}
   .footer .grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:680px){
-  .nav-links{position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;gap:0;
-    padding:8px 24px 24px;border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .25s ease;align-items:stretch}
+  /* Kopfzeile auf dem Handy deckend -> kein Durchscheinen/Ghosting mehr */
+  .site-header{background:var(--paper)}
+  .nav-links{
+    position:fixed;top:72px;left:0;right:0;
+    background:var(--paper);
+    flex-direction:column;gap:0;align-items:stretch;
+    padding:8px 24px 24px;
+    border-top:1px solid var(--line);
+    box-shadow:0 16px 30px -18px rgba(16,38,59,.45);
+    max-height:calc(100dvh - 72px);overflow-y:auto;
+    transform:translateY(-130%);transition:transform .25s ease}
   .nav-links.open{transform:none}
   .nav-links a{padding:14px 0;border-bottom:1px solid var(--line)}
   .nav-links .btn{margin-top:12px;justify-content:center}
@@ -295,7 +309,6 @@ img{max-width:100%;display:block}
   .gauge{grid-template-columns:1fr;justify-items:center;text-align:center}
   .metrics{justify-content:center}
   .footer .grid{grid-template-columns:1fr}
-  .plane{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -396,7 +409,7 @@ img{max-width:100%;display:block}
 <section class="strip" aria-label="Verein in Zahlen">
   <div class="wrap">
     <div class="cell"><div class="v">2007</div><div class="k">gegründet</div></div>
-    <div class="cell"><div class="v">???</div><div class="k">Mitglieder</div></div>
+    <div class="cell"><div class="v">27</div><div class="k">Mitglieder</div></div>
     <div class="cell"><div class="v">110&nbsp;m</div><div class="k">Graspiste</div></div>
     <div class="cell"><div class="v">DMFV</div><div class="k">Dachverband</div></div>
   </div>
@@ -482,7 +495,7 @@ img{max-width:100%;display:block}
       <div class="field-info reveal">
         <div class="rule">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><b>Adresse / Anfahrt</b><span>Hobergstraße, 91171 Greding-Obermässing. Vor der Burg scharfe Rechtskurve, 1000&nbsp;m am Waldrand entlang &#8230</span></div>
+          <div><b>Adresse / Anfahrt</b><span>Hofbergstraße, 91171 Greding-Obermässing. Vor der Burg scharfe Rechtskurve, 1000&nbsp;m am Waldrand entlang &#8230</span></div>
         </div>
         <div class="rule">
           <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
@@ -525,7 +538,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="events">
       <div class="event reveal">
-        <div class="date"><div class="d">21</div><div class="m">Dezember</div></div>
+        <div class="date"><div class="d">21</div><div class="m">Dez</div></div>
         <div><h3>Adventsfliegen</h3><p>Mit Grillbratwurst und natürlich Glühwein.</p></div>
       </div>
       <div class="event reveal">
@@ -620,7 +633,7 @@ async function ladeFlugwetter(){
     + `?latitude=${FELD.lat}&longitude=${FELD.lon}`
     + `&current=temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,weather_code`
     + `&hourly=wind_speed_10m,wind_gusts_10m`
-    + `&wind_speed_unit=kmh&timezone=auto&forecast_days=1`;
+    + `&wind_speed_unit=kmh&timezone=auto&forecast_days=2`;
   try{
     const r = await fetch(url);
     if(!r.ok) throw new Error("HTTP "+r.status);
@@ -653,8 +666,13 @@ async function ladeFlugwetter(){
     let start = hrs.findIndex(t => new Date(t) >= now);
     if(start < 0) start = 0;
     const box = document.getElementById("hours");
+    const STEP = 2;       // 2-Stunden-Schritte (für grobe Tagesplanung)
+    const BALKEN = 6;     // immer 6 Balken anzeigen
     const slice = [];
-    for(let i=start;i<start+6 && i<hrs.length;i++) slice.push(i);
+    for(let k=0; k<BALKEN; k++){
+      const i = start + k*STEP;
+      if(i < hrs.length) slice.push(i);
+    }
     const maxG = Math.max(...slice.map(i=>d.hourly.wind_gusts_10m[i]),1);
     box.innerHTML = slice.map(i=>{
       const g = Math.round(d.hourly.wind_gusts_10m[i]);
