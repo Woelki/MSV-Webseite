@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Schützt vor Suchmaschinen – VOR DEM LIVE-GANG ENTFERNEN -->
+  <meta name="robots" content="noindex, nofollow">
+  <!-- -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flugplatz &amp; Anfahrt – Modellsportverein Obermässing e.&nbsp;V.</title>
+  <meta name="description" content="So findest du zum Flugplatz des Modellsportvereins Obermässing auf dem Hofberg: genaue Wegbeschreibung mit Karte, Hinweise zum Platz und ein 7-Tage-Flugwetter.">
+
+  <!-- Schriften: Archivo (Display) · Inter (Text) · IBM Plex Mono (Daten) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+  /* =================================================================
+     FARBEN & TOKENS  (identisch zur Startseite)
+     ================================================================= */
+  :root{
+    --sky-top:#0c2a4d; --sky-mid:#1a5680; --sky-low:#5e9cc0;
+    --horizon:#f4b15a; --orange:#ef8a1c; --orange-deep:#d9700a;
+    --teal:#2ba9b8; --ink:#10263b; --ink-soft:#46596d;
+    --paper:#fbf7f0; --cloud:#ffffff; --line:#e8ddcd;
+    --good:#2f9e54; --warn:#e0982a; --bad:#d6483b;
+    --maxw:1180px; --r:16px;
+    --shadow:0 18px 40px -22px rgba(16,38,59,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.display{font-family:"Archivo",sans-serif;line-height:1.05;letter-spacing:-.01em}
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange-deep);font-weight:600;display:inline-flex;align-items:center;gap:.6em}
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block}
+
+  /* Buttons */
+  .btn{display:inline-flex;align-items:center;gap:.5em;font-family:"Archivo",sans-serif;font-weight:700;font-size:.98rem;padding:.85em 1.5em;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease}
+  .btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 22px -10px rgba(239,138,28,.8)}
+  .btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#0a1a29;transform:translateY(-2px)}
+
+  /* =================================================================
+     KOPFZEILE / NAVIGATION  (identisch zur Startseite)
+     ================================================================= */
+  .site-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+  .brand .fallback-logo{width:46px;height:46px;border-radius:50%;background:var(--orange);display:grid;place-items:center;color:#fff;font-family:"Archivo";font-weight:800;font-size:1.1rem}
+  .brand b{font-family:"Archivo";font-weight:800;font-size:1.02rem;letter-spacing:-.02em;line-height:1.05}
+  .brand span{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:500;letter-spacing:.04em}
+  .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+  .nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink);transition:color .15s}
+  .nav-links a:hover{color:var(--orange-deep)}
+  .nav-links a[aria-current="page"]{color:var(--orange-deep)}
+  .nav .btn{padding:.6em 1.2em;font-size:.9rem}
+  .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+  .nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.2s}
+
+  /* =================================================================
+     SEITEN-KOPF  (kompakter Himmel)
+     ================================================================= */
+  .page-hero{position:relative;overflow:hidden;color:#fff;padding-block:62px 76px;
+    background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 64%,var(--sky-low) 100%)}
+  .page-hero::before{content:"";position:absolute;right:-6%;bottom:-40%;width:460px;height:460px;background:radial-gradient(circle,rgba(244,177,90,.5),rgba(244,177,90,0) 65%);pointer-events:none}
+  .page-hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background-image:radial-gradient(1.5px 1.5px at 18% 22%,#fff,transparent),radial-gradient(1.5px 1.5px at 72% 16%,#fff,transparent),radial-gradient(1px 1px at 46% 30%,#fff,transparent),radial-gradient(1px 1px at 88% 26%,#fff,transparent)}
+  .page-hero .wrap{position:relative;z-index:2;max-width:48em}
+  .page-hero .eyebrow{color:#ffd9a8}
+  .page-hero .eyebrow::before{background:var(--orange)}
+  .crumbs{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:18px}
+  .crumbs a{text-decoration:none;color:rgba(255,255,255,.75)}
+  .crumbs a:hover{color:#fff}
+  .page-hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;margin:.45rem 0 .7rem}
+  .page-hero h1 .accent{color:var(--orange)}
+  .page-hero .lead{font-size:1.13rem;color:rgba(255,255,255,.9);max-width:34em}
+  .reassure{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+  .reassure .chip{display:inline-flex;align-items:center;gap:.5em;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.24);padding:.5em 1em;border-radius:999px;font-size:.9rem;font-weight:500}
+  .reassure .chip svg{color:#7fe3a3;flex:0 0 auto}
+
+  /* =================================================================
+     ABSCHNITTE allgemein
+     ================================================================= */
+  .section{padding-block:84px}
+  .section-head{max-width:46em;margin-bottom:48px}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:700;margin:.6rem 0 .8rem}
+  .section-head p{color:var(--ink-soft);font-size:1.08rem}
+
+  /* =================================================================
+     WEGBESCHREIBUNG  (Karte + nummerierte Schritte)
+     ================================================================= */
+  .route{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .map-figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:var(--cloud);position:sticky;top:96px}
+  .map-figure img{width:100%;height:auto;display:block}
+  .map-figure figcaption{padding:12px 16px;font-size:.8rem;color:var(--ink-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+  .map-figure figcaption .src{font-family:"IBM Plex Mono";font-size:.7rem;color:var(--ink-soft);opacity:.8}
+  .map-figure figcaption a{color:var(--orange-deep);font-weight:600;text-decoration:none}
+
+  .route-intro{color:var(--ink-soft);margin-bottom:24px;max-width:40em}
+  .r-steps{list-style:none;counter-reset:r}
+  .r-step{position:relative;display:grid;grid-template-columns:40px 1fr;gap:20px;padding-bottom:26px}
+  .r-step:not(:last-child)::before{content:"";position:absolute;left:19px;top:44px;bottom:0;width:2px;background:var(--line)}
+  .r-num{position:relative;z-index:2;width:40px;height:40px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:"Archivo";font-weight:800;font-size:1.1rem;flex:0 0 auto}
+  .r-step h3{font-size:1.1rem;margin-bottom:.3rem}
+  .r-step p{font-size:.96rem;color:var(--ink-soft);max-width:38em}
+  .r-step .street{font-family:"IBM Plex Mono";font-size:.92em;background:rgba(43,169,184,.12);color:#1f7c89;padding:.05em .45em;border-radius:6px;white-space:nowrap}
+
+  .warnbox{display:flex;gap:14px;align-items:flex-start;background:rgba(214,72,59,.07);border:1px solid rgba(214,72,59,.3);border-radius:12px;padding:16px 18px;margin-top:6px}
+  .warnbox svg{flex:0 0 auto;color:var(--bad);margin-top:2px}
+  .warnbox b{font-family:"Archivo"}
+  .warnbox p{font-size:.92rem;color:var(--ink-soft);margin-top:2px}
+  .route-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;align-items:center}
+  .route-cta .hint{font-size:.86rem;color:var(--ink-soft)}
+
+  /* =================================================================
+     PANORAMA-BAND  (Belohnung nach der Anfahrt)
+     ================================================================= */
+  .pano{position:relative;height:340px;overflow:hidden}
+  .pano img{width:100%;height:100%;object-fit:cover}
+  .pano .cap{position:absolute;left:0;bottom:0;right:0;padding:40px 24px 22px;background:linear-gradient(0deg,rgba(16,38,59,.7),transparent);color:#fff}
+  .pano .cap .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:0}
+  .pano .cap b{font-family:"Archivo";font-size:1.3rem;display:block}
+  .pano .cap span{color:rgba(255,255,255,.85);font-size:.95rem}
+
+  /* =================================================================
+     GUT ZU WISSEN  (Eckdaten-Liste)
+     ================================================================= */
+  .facts .rule{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .facts .rule:first-of-type{border-top:1px solid var(--line)}
+  .facts .rule .ic{flex:0 0 auto;width:36px;height:36px;border-radius:9px;background:rgba(43,169,184,.12);display:grid;place-items:center;color:var(--teal)}
+  .facts .rule b{display:block;font-family:"Archivo";font-size:1.02rem}
+  .facts .rule span{font-size:.94rem;color:var(--ink-soft)}
+  .facts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 48px}
+  .placeholder-flag{display:inline-flex;align-items:center;gap:.5em;font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;color:var(--orange-deep);background:rgba(239,138,28,.1);border:1px dashed rgba(239,138,28,.55);padding:.3em .6em;border-radius:6px}
+
+  /* =================================================================
+     SIGNATURE: 7-TAGE-FLUGWETTER  (dunkles Instrumentenpanel)
+     ================================================================= */
+  .wx-panel{background:var(--ink);color:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+  .wx-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+  .wx-head .ttl{font-family:"IBM Plex Mono";font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+  .wx-head .upd{font-family:"IBM Plex Mono";font-size:.66rem;color:rgba(255,255,255,.4)}
+  .forecast{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+  .fc-day{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 8px;text-align:center}
+  .fc-day .wd{font-family:"IBM Plex Mono";font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;font-weight:600}
+  .fc-day .dt{font-family:"IBM Plex Mono";font-size:.64rem;color:rgba(255,255,255,.4);margin-bottom:6px}
+  .fc-icon{height:34px;display:grid;place-items:center;margin:4px 0;color:#ffd9a8}
+  .fc-temp{font-family:"Archivo";font-weight:700;font-size:1rem}
+  .fc-temp .mx{color:#fff}
+  .fc-temp .mn{color:rgba(255,255,255,.45);font-weight:500}
+  .fc-meta{font-family:"IBM Plex Mono";font-size:.62rem;color:rgba(255,255,255,.55);margin-top:5px;line-height:1.4}
+  .fc-verdict{display:inline-flex;align-items:center;gap:5px;font-family:"IBM Plex Mono";font-size:.64rem;margin-top:9px}
+  .fc-verdict i{width:7px;height:7px;border-radius:50%;display:inline-block;flex:0 0 auto}
+  .fc-verdict.good{color:#7fe3a3} .fc-verdict.good i{background:var(--good)}
+  .fc-verdict.warn{color:#ffce85} .fc-verdict.warn i{background:var(--warn)}
+  .fc-verdict.bad{color:#ff9b91}  .fc-verdict.bad i{background:var(--bad)}
+  .fc-fallback{grid-column:1/-1;text-align:center;color:rgba(255,255,255,.6);font-size:.9rem;padding:24px 0}
+  .wx-legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:18px;font-family:"IBM Plex Mono";font-size:.68rem;color:rgba(255,255,255,.55)}
+  .wx-legend span{display:inline-flex;align-items:center;gap:6px}
+  .wx-legend i{width:8px;height:8px;border-radius:50%;display:inline-block}
+  .wx-note{font-size:.9rem;color:var(--ink-soft);margin-top:18px;max-width:46em}
+
+  /* =================================================================
+     DOKUMENTE
+     ================================================================= */
+  .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .doc{display:flex;gap:18px;align-items:center;background:var(--cloud);border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:var(--shadow)}
+  .doc .ic{flex:0 0 auto;width:48px;height:48px;border-radius:12px;background:rgba(239,138,28,.12);display:grid;place-items:center;color:var(--orange-deep)}
+  .doc .meta{flex:1}
+  .doc b{font-family:"Archivo";font-size:1.08rem;display:block}
+  .doc span{font-size:.88rem;color:var(--ink-soft)}
+  .doc .dl{flex:0 0 auto;font-family:"Archivo";font-weight:700;font-size:.9rem;color:var(--orange-deep);text-decoration:none;white-space:nowrap}
+  .doc .dl:hover{color:var(--ink)}
+
+  /* =================================================================
+     CTA-BAND + FUSSZEILE  (identisch zur Startseite)
+     ================================================================= */
+  .band{background:linear-gradient(120deg,var(--orange),var(--orange-deep));color:#fff}
+  .band .wrap{padding-block:64px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+  .band h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+  .band p{color:rgba(255,255,255,.92);max-width:32em;margin-top:.4rem}
+
+  .footer{background:var(--ink);color:rgba(255,255,255,.75);padding-block:56px 28px}
+  .footer .grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  .footer h4{font-family:"Archivo";color:#fff;font-size:.95rem;margin-bottom:16px;letter-spacing:.02em}
+  .footer a{text-decoration:none;color:rgba(255,255,255,.72);font-size:.92rem;display:block;padding:5px 0;transition:color .15s}
+  .footer a:hover{color:var(--orange)}
+  .footer .foot-brand p{font-size:.92rem;margin-top:14px;max-width:26em}
+  .footer .foot-brand .brand b{color:#fff}
+  .footer .foot-brand .brand span{color:rgba(255,255,255,.6)}
+  .footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.5)}
+  .footer .legal a{display:inline;color:rgba(255,255,255,.6)}
+
+  /* =================================================================
+     SCROLL-REVEAL & RESPONSIVE
+     ================================================================= */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:920px){
+    .route{grid-template-columns:1fr;gap:32px}
+    .map-figure{position:static;max-width:560px}
+    .facts-grid{grid-template-columns:1fr;gap:0}
+    .forecast{grid-template-columns:repeat(4,1fr)}
+    .docs{grid-template-columns:1fr}
+    .footer .grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    .nav-links{position:fixed;top:72px;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;align-items:stretch;padding:8px 24px 24px;border-top:1px solid var(--line);max-height:calc(100dvh - 72px);overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease, visibility .2s ease}
+    .nav-links.open{opacity:1;visibility:visible;pointer-events:auto}
+    .nav-links a{padding:14px 0}
+    .nav-links .btn{margin-top:12px;justify-content:center}
+    .nav-toggle{display:block}
+    .forecast{grid-template-columns:repeat(2,1fr)}
+    .doc{flex-wrap:wrap}
+    .band .wrap{flex-direction:column;align-items:flex-start}
+    .footer .grid{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .reveal{opacity:1;transform:none}
+  }
+  :focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+  </style>
+</head>
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html" aria-label="Modellsportverein Obermässing – Startseite">
+        <img src="logo.webp" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+        <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+      </a>
+      <nav>
+        <ul class="nav-links" id="navlinks">
+          <!-- <li><a href="#verein">Verein</a></li> -->
+          <li><a href="#top">Flugplatz</a></li>
+          <!-- <li><a href="#termine">Termine</a></li> -->
+          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a class="btn btn-primary" href="kontakt.html">Jetzt anfragen&nbsp;→</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navtoggle" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================ SEITEN-KOPF ============================ -->
+    <section class="page-hero">
+      <div class="wrap">
+        <nav class="crumbs" aria-label="Brotkrümel"><a href="index.html">Start</a> &nbsp;/&nbsp; Flugplatz</nav>
+        <span class="eyebrow">Der Platz auf dem Hofberg</span>
+        <h1>Ein Logenplatz<br>Man muss ihn nur <span class="accent">finden</span></h1>
+        <p class="lead">Die Aussicht ist großartig, der Weg dorthin ein kleines Abenteuer. Damit du nicht im Wald suchst, hier die Anfahrt Schritt für Schritt.</p>
+        <div class="reassure">
+          <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Gäste jederzeit willkommen</span>
+          <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Zuschauen kostenlos</span>
+          <span class="chip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Parken direkt am Platz</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ WEGBESCHREIBUNG ============================ -->
+    <section class="section" id="anfahrt">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">So findest du zu uns</span>
+          <h2>Die Anfahrt</h2>
+          <p>Dein Navi bringt dich zuverlässig bis Obermässing und meist noch bis zur Burg Hofberg. Das letzte Stück über Feld- und Schotterweg kennt aber kaum eine Karte. Ab dem Ortskern folgst du am besten dieser Beschreibung.</p>
+        </div>
+
+        <div class="route">
+          <!-- Karte -->
+          <figure class="map-figure reveal">
+            <!-- HINWEIS: map.webp ins Repo-Wurzelverzeichnis legen (die hochgeladene Skizze). -->
+            <img src="map.webp" alt="Wegskizze: Anfahrt von Obermässing über die Hofbergstraße und die Burg Hofberg zum Flugplatz, mit eingezeichneter Route">
+            <figcaption>
+              <span class="src">Kartendaten © OpenStreetMap-Mitwirkende</span>
+              <a href="https://www.openstreetmap.org/?mlat=49.1249064&mlon=11.2895809#map=15/49.1249064/11.2895809" target="_blank" rel="noopener">In OpenStreetMap öffnen ↗</a>
+            </figcaption>
+          </figure>
+
+          <!-- Schritte -->
+          <div class="reveal">
+            <p class="route-intro">Plane vom Ortskern nur wenige Minuten ein, aber fahr das letzte Stück langsam.</p>
+            <ol class="r-steps">
+              <li class="r-step">
+                <div class="r-num">1</div>
+                <div>
+                  <h3>Durch den Ort</h3>
+                  <p>Auf der Hauptstraße <span class="street">An der Schwarzach</span> bis etwa zur Ortsmitte, dort in die Straße <span class="street">Im Anger</span> abbiegen. An der abknickenden Vorfahrt geradeaus weiter auf <span class="street">Am Dorfplatz</span>.</p>
+                </div>
+              </li>
+              <li class="r-step">
+                <div class="r-num">2</div>
+                <div>
+                  <h3>Richtung Berg</h3>
+                  <p>Geradeaus halten – die Straße macht eine enge Rechts-Links-Kombination. Direkt danach die nächste Abzweigung rechts in die <span class="street">Hofbergstraße</span>.</p>
+                </div>
+              </li>
+              <li class="r-step">
+                <div class="r-num">3</div>
+                <div>
+                  <h3>Hinauf zur Burg</h3>
+                  <p>Der Hofbergstraße steil bergauf folgen bis zum Tor der <b>Burg Hofberg</b>. Dort in einer scharfen, fast 180°-Rechtskurve abbiegen und dem Waldrand folgen.</p>
+                </div>
+              </li>
+              <li class="r-step">
+                <div class="r-num">4</div>
+                <div>
+                  <h3>Teer wird Schotter</h3>
+                  <p>Nach rund 800&nbsp;m Teerstraße wechselt der Belag auf Schotter. Diesem Schotterweg etwa 300&nbsp;m folgen, bis links – auf Höhe eines Waldrands – eine Abzweigung kommt. Die große, fast rechteckige freie Fläche zwischen den Wäldern ist bereits unser Gelände. Hier links auf den Feldweg.</p>
+                </div>
+              </li>
+              <li class="r-step">
+                <div class="r-num">5</div>
+                <div>
+                  <h3>Die letzten Meter</h3>
+                  <p>Rund 300&nbsp;m geradeaus, dann eine Linkskurve – und du stehst am Platz.</p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="warnbox">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>
+              <div>
+                <b>Nichts für tiefergelegte Autos</b>
+                <p>Der Feldweg auf dem letzten Stück ist holprig. Fahr im Zweifel langsam und mit etwas Bodenfreiheit.</p>
+              </div>
+            </div>
+
+            <div class="route-cta">
+              <a class="btn btn-dark" href="https://www.openstreetmap.org/?mlat=49.1249064&mlon=11.2895809#map=15/49.1249064/11.2895809" target="_blank" rel="noopener">Route planen ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PANORAMA-BAND ============================ -->
+    <section class="pano reveal" aria-label="Blick über den Flugplatz">
+      <!-- PLATZHALTER: weites Querformat-Panorama vom Platz auf dem Hofberg – Wiese, Horizont, evtl. ein Modell in der Luft. -->
+      <img src="platz3.webp" alt="Panorama des Flugplatzes auf dem Hofberg mit weitem Blick über die Landschaft" loading="lazy">
+      <div class="cap"><div class="wrap"><b>Oben angekommen.</b><span>110&nbsp;m Graspiste, Wald ringsum und Himmel ohne Ende.</span></div></div>
+    </section>
+
+    <!-- ============================ GUT ZU WISSEN ============================ -->
+    <section class="section" style="background:#fff;border-block:1px solid var(--line)">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Gut zu wissen</span>
+          <h2>Bevor du losfährst</h2>
+        </div>
+        <div class="facts facts-grid reveal">
+          <div>
+            <div class="rule">
+              <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <div><b>Lage</b><span>&#8230 Platzhalter</span></div>
+            </div>
+            <div class="rule">
+              <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              <div><b>Flugzeiten</b><span>&#8230 Platzhalter</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="rule">
+              <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
+              <div><b>Untergrund &amp; Parken</b><span>&#8230 Platzhalter</span></div>
+            </div>
+            <div class="rule">
+              <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></span>
+              <div><b>Gäste willkommen</b><span>&#8230 Platzhalter</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ 7-TAGE-FLUGWETTER ============================ -->
+    <section class="section" id="flugwetter">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Planungshilfe</span>
+          <h2>Flugwetter für die Woche</h2>
+        </div>
+
+        <div class="wx-panel reveal">
+          <div class="wx-head">
+            <div class="ttl">7-Tage-Vorhersage · am Platz</div>
+            <div class="upd" id="wx-updated">lädt …</div>
+          </div>
+          <div class="forecast" id="forecast">
+            <p class="fc-fallback">Lade Vorhersage …</p>
+          </div>
+          <div class="wx-legend">
+            <span><i style="background:var(--good)"></i> Flugtauglich</span>
+            <span><i style="background:var(--warn)"></i> Grenzwertig – für Geübte</span>
+            <span><i style="background:var(--bad)"></i> Eher nicht</span>
+          </div>
+        </div>
+        <p class="wx-note">Prozentwert = Niederschlagswahrscheinlichkeit, daneben die stärksten Böen zwischen 10 und 18 Uhr. Quelle: Open-Meteo.</p>
+      </div>
+    </section>
+
+    <!-- ============================ DOKUMENTE ============================ -->
+    <section class="section" id="dokumente" style="background:#fff;border-block:1px solid var(--line)">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Zum Nachlesen</span>
+          <h2>Satzung &amp; Platzordnung</h2>
+          <p>Wer es genau wissen will: Hier liegen die Dokumente, die regeln, wie wir den Verein und den Platz betreiben.</p>
+        </div>
+        <div class="docs reveal">
+          <!-- TODO: PDFs unter /dokumente/ ablegen; dann funktionieren die Links direkt. -->
+          <div class="doc">
+            <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+            <div class="meta"><b>Vereinssatzung</b><span>Zweck, Mitgliedschaft, Organe – die rechtliche Grundlage des Vereins.</span></div>
+            <a class="dl" href="dokumente/satzung.pdf" download>PDF ↓</a>
+          </div>
+          <div class="doc">
+            <span class="ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg></span>
+            <div class="meta"><b>Platzordnung</b><span>Flugzeiten, Sicherheit und Regeln für den Betrieb am Platz.</span></div>
+            <a class="dl" href="dokumente/platzordnung.pdf" download>PDF ↓</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ CTA-BAND ============================ -->
+    <section class="band">
+      <div class="wrap">
+        <div class="reveal">
+          <h2>Einfach mal vorbeischauen?</h2>
+        </div>
+        <div class="reveal" style="display:flex;gap:14px;flex-wrap:wrap">
+          <a class="btn btn-dark" href="kontakt.html">Kontakt aufnehmen</a>
+          <a class="btn btn-ghost" href="mitglied-werden.html">Mitglied werden</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================ FUSSZEILE ============================ -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="grid">
+        <div class="foot-brand">
+          <a class="brand" href="index.html">
+            <img src="logo.webp" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+            <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+          </a>
+          <p>Modellflug, Eigenbau und ein Platz unter offenem Himmel, mitten in Mittelfranken.</p>
+        </div>
+        <div>
+          <h4>Verein</h4>
+          <!-- <a href="index.html#verein">Über uns</a> -->
+          <a href="mitglied-werden.html">Mitglied werden</a>
+          <a href="index.html#termine">Termine</a>
+          <!-- <a href="index.html#" data-placeholder>Vorstand</a> -->
+        </div>
+        <div>
+          <h4>Am Platz</h4>
+          <a href="#anfahrt">Anfahrt</a>
+          <!-- <a href="index.html#" data-placeholder>Platzordnung</a> -->
+          <a href="#flugwetter">Flugwetter</a>
+          <!-- <a href="index.html#" data-placeholder>Sicherheit</a> -->
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a>
+          <a href="#" data-placeholder>Facebook-Gruppe</a>
+          <a href="kontakt.html">Anfrage stellen</a>
+        </div>
+      </div>
+      <div class="legal">
+        <span>© <span id="year"></span> Modellsportverein Obermässing e.&nbsp;V.</span>
+        <span>
+          <a href="impressum.html">Impressum</a> ·
+          <a href="datenschutz.html">Datenschutz</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  /* =================================================================
+     FLUGPLATZ-KOORDINATEN  (wie auf der Startseite)
+     ================================================================= */
+  const FELD = { lat: 49.1249064, lon: 11.2895809 };
+  const AMPEL = { gut: 18, grenz: 30 };   // Böen in km/h
+  const FLUGFENSTER = { von: 10, bis: 18 }; // realistische Flugstunden (lokale Uhrzeit) – bei Bedarf anpassen 
+  const WD = ["So","Mo","Di","Mi","Do","Fr","Sa"];
+
+  /* WMO-Wettercode → kurze Beschreibung + Icon-Kategorie */
+  function wxInfo(code){
+    if(code===0) return {l:"Klar",   k:"sun"};
+    if(code===1) return {l:"Heiter", k:"sun"};
+    if(code===2) return {l:"Wolkig", k:"partly"};
+    if(code===3) return {l:"Bedeckt",k:"cloud"};
+    if(code===45||code===48) return {l:"Nebel", k:"fog"};
+    if(code>=51&&code<=57)   return {l:"Niesel",k:"rain"};
+    if(code>=61&&code<=67)   return {l:"Regen", k:"rain"};
+    if(code>=71&&code<=77)   return {l:"Schnee",k:"snow"};
+    if(code>=80&&code<=82)   return {l:"Schauer",k:"rain"};
+    if(code>=85&&code<=86)   return {l:"Schneeschauer",k:"snow"};
+    if(code>=95)             return {l:"Gewitter",k:"storm"};
+    return {l:"–", k:"cloud"};
+  }
+
+  const S='<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">';
+  const ICONS = {
+    sun:    S+'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    partly: S+'<path d="M12 3v1M5 7l.7.7M3 13h1M19 7l-.7.7"/><circle cx="9" cy="9" r="3"/><path d="M16 19a3.5 3.5 0 0 0 0-7 4.5 4.5 0 0 0-8.5.9A3 3 0 0 0 8 19h8Z"/></svg>',
+    cloud:  S+'<path d="M17.5 19a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 19h11Z"/></svg>',
+    fog:    S+'<path d="M16 17a4 4 0 0 0 0-8 5.5 5.5 0 0 0-10.6 1.4A3 3 0 0 0 6 17"/><path d="M4 21h16M7 18h12"/></svg>',
+    rain:   S+'<path d="M17.5 14a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 14"/><path d="M8 18l-1 2M12 18l-1 2M16 18l-1 2"/></svg>',
+    snow:   S+'<path d="M17.5 13a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 13"/><path d="M8 18h.01M12 20h.01M16 18h.01M10 21h.01M14 17h.01"/></svg>',
+    storm:  S+'<path d="M17.5 13a4.5 4.5 0 0 0 0-9 6 6 0 0 0-11.6 1.5A3.5 3.5 0 0 0 6.5 13"/><path d="M12 13l-2 4h3l-2 4"/></svg>'
+  };
+
+  async function ladeVorhersage(){
+    // Tägliche Eckwerte (Temperatur, Sonnenzeiten) + stündliche Böen für die Tagstunden-Auswertung
+    const url = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=' + FELD.lat + '&longitude=' + FELD.lon
+      + '&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset'
+      + '&hourly=weather_code,wind_gusts_10m,precipitation_probability'
+      + '&wind_speed_unit=kmh&timezone=auto&forecast_days=7';
+    try{
+      const r = await fetch(url);
+      if(!r.ok) throw new Error("HTTP "+r.status);
+      const d = await r.json();
+      const day = d.daily;
+      const H   = d.hourly;
+      const hTime = H.time.map(t=>new Date(t));   // stündliche Zeitstempel einmal vorbereiten
+      const box = document.getElementById("forecast");
+      box.innerHTML = day.time.map((t,i)=>{
+        const date = new Date(t);
+        const wd  = i===0 ? "Heute" : WD[date.getDay()];
+        const dt  = String(date.getDate()).padStart(2,"0")+"."+String(date.getMonth()+1).padStart(2,"0")+".";
+        const tmax= Math.round(day.temperature_2m_max[i]);
+        const tmin= Math.round(day.temperature_2m_min[i]);
+ 
+        // Nur realistische Flugstunden zählen: festes Flugfenster (siehe FLUGFENSTER),
+        // zusätzlich durch Sonnenauf-/-untergang gekappt (für kurze Wintertage).
+        // So fließen weder nächtliche noch späte Abend-Sturmspitzen in die Ampel ein.
+        const sr = new Date(day.sunrise[i]);
+        const ss = new Date(day.sunset[i]);
+        let gustDay = -Infinity, pop = 0, middayCode = day.weather_code[i], bestDiff = Infinity;
+        for(let j=0;j<hTime.length;j++){
+          const h  = hTime[j];
+          const hh = h.getHours();
+          if(h >= sr && h <= ss && hh >= FLUGFENSTER.von && hh < FLUGFENSTER.bis){
+            const g = H.wind_gusts_10m[j];
+            if(g > gustDay) gustDay = g;
+            const p = H.precipitation_probability[j];
+            if(p != null && p > pop) pop = p;
+            const diff = Math.abs(hh - 13);   // Wetter-Icon von der Mittagsstunde
+            if(diff < bestDiff){ bestDiff = diff; middayCode = H.weather_code[j]; }
+          }
+        }
+        if(gustDay === -Infinity) gustDay = 0;   // Schutz, falls das Fenster leer bleibt
+        const gust = Math.round(gustDay);
+        const inf  = wxInfo(middayCode);
+
+        let cls,lbl;
+        if(gust<=AMPEL.gut){ cls="good"; lbl="Flugtauglich"; }
+        else if(gust<=AMPEL.grenz){ cls="warn"; lbl="Grenzwertig"; }
+        else { cls="bad"; lbl="Eher nicht"; }
+        return '<div class="fc-day">'
+          + '<div class="wd">'+wd+'</div><div class="dt">'+dt+'</div>'
+          + '<div class="fc-icon" title="'+inf.l+'">'+ICONS[inf.k]+'</div>'
+          + '<div class="fc-temp"><span class="mx">'+tmax+'°</span> <span class="mn">'+tmin+'°</span></div>'
+          + '<div class="fc-meta">'+pop+'% · Böen '+gust+'</div>'
+          + '<div class="fc-verdict '+cls+'"><i></i>'+lbl+'</div>'
+          + '</div>';
+      }).join("");
+      document.getElementById("wx-updated").textContent =
+        "Stand " + new Date().toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+    }catch(err){
+      document.getElementById("forecast").innerHTML =
+        '<p class="fc-fallback">Die Vorhersage erscheint, sobald die Seite online ist.</p>';
+      document.getElementById("wx-updated").textContent = "offline";
+    }
+  }
+  ladeVorhersage();
+
+  /* Mobiles Menü */
+  const toggle = document.getElementById("navtoggle");
+  const links  = document.getElementById("navlinks");
+  toggle.addEventListener("click", ()=>{
+    const open = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open);
+  });
+  links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
+
+  /* Scroll-Reveal */
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+  /* Jahr in der Fußzeile */
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* Platzhalter-Links abfangen */
+  document.querySelectorAll('[data-placeholder]').forEach(a=>{
+    a.addEventListener("click",e=>{ e.preventDefault(); });
+  });
+  </script>
+</body>
+</html>
