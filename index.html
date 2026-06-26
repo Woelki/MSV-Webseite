@@ -269,6 +269,13 @@ img{max-width:100%;display:block}
 .footer .legal a{display:inline;color:rgba(255,255,255,.6)}
 
 /* =================================================================
+   Galerie mit auto-fill, Raster passt die Spaltenzahl automatisch an die Bildschirmbreite an, ohne Media Queries
+   ================================================================= */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.gallery figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/3}
+.gallery figure img{width:100%;height:100%;object-fit:cover}
+
+/* =================================================================
    SCROLL-REVEAL & RESPONSIVE
    ================================================================= */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
@@ -321,7 +328,7 @@ img{max-width:100%;display:block}
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="Modellsportverein Obermässing – Startseite">
-      <img src="logo.jpg" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+      <img src="logo.webp" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
       <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
     </a>
     <nav>
@@ -430,7 +437,7 @@ img{max-width:100%;display:block}
       </div>
     </div>
     <div class="photo reveal">
-	  <img src="platz.jpg" alt="Ein wunderschönes Modellflugzeug am Hofberg" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px;">
+	  <img src="platz3.webp" alt="Ein wunderschönes Modellflugzeug am Hofberg" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px;">
     </div>
   </div>
 </section>
@@ -479,6 +486,16 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
+	
+	<!-- Galerie direkt unter der Karte -->
+	<div class="gallery reveal" style="margin-top:24px">
+	  <figure><img src="platz.webp"  alt="Modell auf der Graspiste" loading="lazy"></figure>
+      <figure><img src="galerie/1.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+	  <figure><img src="galerie/4.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+	  <figure><img src="galerie/6.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+      <!-- weitere figure-Blöcke -->
+    </div>
+	
   </div>
 </section>
 
@@ -519,7 +536,7 @@ img{max-width:100%;display:block}
     </div>
 
     <div class="steps-cta reveal">
-      <a class="btn btn-dark" href="#" data-placeholder>Aufnahmeantrag herunterladen (PDF)</a>
+	  <a class="btn btn-dark" href="dokumente/aufnahmeantrag.pdf" download>Aufnahmeantrag herunterladen (PDF)</a>
       <a class="btn btn-primary" href="kontakt.html">Jetzt anfragen</a>
       <span class="steps-note">Jugendliche unter 18 brauchen die Unterschrift eines Erziehungsberechtigten.</span>
     </div>
@@ -560,7 +577,7 @@ img{max-width:100%;display:block}
     </div>
     <div class="reveal" style="display:flex;gap:14px;flex-wrap:wrap">
       <a class="btn btn-dark" href="kontakt.html">E-Mail schreiben</a>
-      <a class="btn btn-ghost" href="#" data-placeholder>Zur Facebook-Gruppe</a>
+      <a class="btn btn-ghost" href="https://www.facebook.com/MSVObermaessing/?locale=de_DE">Zur Facebook-Gruppe</a>
     </div>
   </div>
 </section>
@@ -572,7 +589,7 @@ img{max-width:100%;display:block}
     <div class="grid">
       <div class="foot-brand">
         <a class="brand" href="#top">
-          <img src="logo.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+          <img src="logo.webp" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
           <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
         </a>
         <p>Modellflug, Eigenbau und ein Platz unter offenem Himmel, mitten in Mittelfranken.</p>
@@ -594,7 +611,7 @@ img{max-width:100%;display:block}
       <div>
         <h4>Kontakt</h4>
         <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a>
-        <a href="#" data-placeholder>Facebook-Gruppe</a>
+        <a href="https://www.facebook.com/MSVObermaessing/?locale=de_DE">Facebook-Gruppe</a>
         <a href="kontakt.html">Anfrage stellen</a>
       </div>
     </div>
