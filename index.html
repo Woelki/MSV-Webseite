@@ -269,11 +269,30 @@ img{max-width:100%;display:block}
 .footer .legal a{display:inline;color:rgba(255,255,255,.6)}
 
 /* =================================================================
-   Galerie mit auto-fill, Raster passt die Spaltenzahl automatisch an die Bildschirmbreite an, ohne Media Queries
+   Galerie
    ================================================================= */
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.gallery figure{margin:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);aspect-ratio:4/3}
+.gallery{
+  display:flex;
+  gap:16px;
+  overflow-x:auto;              /* zu breit → seitlich scrollen statt umbrechen */
+  scroll-snap-type:x mandatory; /* rastet sauber an den Bildern ein */
+  padding-bottom:10px;          /* Luft für Scrollleiste + Schatten */
+}
+.gallery figure{
+  margin:0;
+  flex:0 0 clamp(200px, 72vw, 300px);  /* feste Breite → bricht nie um */
+  aspect-ratio:4/3;
+  border-radius:var(--r);
+  overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  scroll-snap-align:start;
+}
 .gallery figure img{width:100%;height:100%;object-fit:cover}
+
+.gallery{cursor:grab}                                  /* Greif-Hand als Hinweis */
+.gallery.dragging{cursor:grabbing;scroll-snap-type:none}/* während des Ziehens: Faust + flüssig */
+.gallery img{user-select:none;-webkit-user-drag:none}  /* Bild nicht versehentlich "aufheben" */
 
 /* =================================================================
    SCROLL-REVEAL & RESPONSIVE
@@ -491,7 +510,10 @@ img{max-width:100%;display:block}
 	<div class="gallery reveal" style="margin-top:24px">
 	  <figure><img src="platz.webp"  alt="Modell auf der Graspiste" loading="lazy"></figure>
       <figure><img src="galerie/1.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+	  <figure><img src="galerie/2.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+	  <figure><img src="galerie/3.jpg" alt="Blick über den Platz" loading="lazy"></figure>
 	  <figure><img src="galerie/4.jpg" alt="Blick über den Platz" loading="lazy"></figure>
+	  <figure><img src="galerie/5.jpg" alt="Blick über den Platz" loading="lazy"></figure>
 	  <figure><img src="galerie/6.jpg" alt="Blick über den Platz" loading="lazy"></figure>
       <!-- weitere figure-Blöcke -->
     </div>
@@ -737,6 +759,34 @@ document.getElementById("year").textContent = new Date().getFullYear();
 document.querySelectorAll('[data-placeholder]').forEach(a=>{
   a.addEventListener("click",e=>{ e.preventDefault();
     a.dataset.note || (a.dataset.note="1");
+  });
+});
+
+/* =================================================================
+   5) Galerie: mit der Maus ziehen (Klicken + Halten + schieben)
+   ================================================================= */
+document.querySelectorAll('.gallery').forEach(strip=>{
+  let isDown = false;   // Maustaste gerade gedrückt?
+  let startX;           // Mausposition im Moment des Drückens
+  let startScroll;      // Scroll-Stand im Moment des Drückens
+
+  strip.addEventListener('mousedown', e=>{
+    isDown = true;
+    strip.classList.add('dragging');
+    startX = e.pageX;
+    startScroll = strip.scrollLeft;
+    e.preventDefault();                  // kein Text/Bild markieren
+  });
+
+  // Loslassen ODER Maus verlässt den Streifen -> Ziehen beenden
+  ['mouseup','mouseleave'].forEach(ev=>
+    strip.addEventListener(ev, ()=>{ isDown=false; strip.classList.remove('dragging'); })
+  );
+
+  strip.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    const weg = e.pageX - startX;          // wie weit hat die Maus sich bewegt
+    strip.scrollLeft = startScroll - weg;  // Streifen entgegengesetzt mitschieben
   });
 });
 </script>
