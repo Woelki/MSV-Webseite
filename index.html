@@ -13,9 +13,7 @@
      SCHRIFTEN
      Display: Archivo (sportlich-technisch) · Text: Inter · Daten: IBM Plex Mono
      ================================================================= -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 
 <style>
 /* =================================================================
@@ -329,8 +327,8 @@ img{max-width:100%;display:block}
     <nav>
       <ul class="nav-links" id="navlinks">
         <li><a href="#verein">Verein</a></li>
-        <li><a href="#mitglied">Mitglied werden</a></li>
         <li><a href="#flugplatz">Flugplatz</a></li>
+        <li><a href="index.html#mitglied">Mitglied werden</a></li>
         <li><a href="#termine">Termine</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
         <li><a class="btn btn-primary" href="#mitglied">Schnuppern&nbsp;→</a></li>
@@ -415,6 +413,75 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
+<!-- ===================== ÜBER DEN VEREIN ===================== -->
+<section class="section" id="verein">
+  <div class="wrap about">
+    <div class="reveal">
+      <span class="eyebrow">Über uns</span>
+      <h2>Eine Werkstatt, ein Platz, eine Leidenschaft</h2>
+      <p>Beim Modellsportverein Obermässing treffen sich Menschen, die etwas mit den Händen bauen und in die Luft bringen wollen. Segler, Motormaschinen, Elektroflieger. Von der fertigen Schaumwaffel bis zum Eigenbau aus Balsa und Sperrholz ist alles dabei.</p>
+      <p>Wir sind ein überschaubarer Verein, in dem jeder jeden kennt. Genau das ist der Vorteil: Wer anfängt, fliegt nicht allein, sondern bekommt jemanden an die Seite, der schon ein paar Crashs hinter sich hat.</p>
+      <div class="tags">
+        <span class="tag">Segelflug</span>
+        <span class="tag">Elektroflug</span>
+        <span class="tag">Verbrenner</span>
+        <span class="tag">Eigenbau</span>
+        <span class="tag">Jugendförderung?</span>
+      </div>
+    </div>
+    <div class="photo reveal">
+	  <img src="platz.jpg" alt="Ein wunderschönes Modellflugzeug am Hofberg" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px;">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FLUGPLATZ + KARTE ===================== -->
+<section class="section" id="flugplatz" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Der Flugplatz</span>
+      <h2>So findest du zu uns</h2>
+      <p>Unser Platz thront auf dem Hofberg – ideal zum Fliegen, weniger ideal zum Finden. Darum hier ganz genau.</p>
+      <p>Kleiner Insider-Tipp: Wer uns mit dem Fahrrad besuchen will, sollte Waden aus Stahl oder einen E-Motor mitbringen!</p>
+    </div>
+
+    <div class="field">
+      <div class="field-info reveal">
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b>Adresse / Anfahrt</b><span>Hofbergstraße, 91171 Greding-Obermässing. Vor der Burg scharfe Rechtskurve, 1000&nbsp;m am Waldrand entlang &#8230</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <div><b>Flugzeiten</b><span>Mo–So. 24/7. Jeden Sonntag 10 Uhr Frühshoppenfliegen.</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="5" y="9" width="14" height="11" rx="2"/></svg></span>
+          <div><b>Vor dem ersten Flug</b><span>Gültige Modellflug-Versicherung und ggf. Kenntnisnachweis (EU-Drohnenverordnung). Beides organisieren wir über den Dachverband.</span></div>
+        </div>
+        <div class="rule">
+          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></span>
+          <div><b>Gäste willkommen</b><span>Zuschauen ist jederzeit erlaubt. Sonntag Vormittag ist fast immer jemand da, der gern erklärt.</span></div>
+        </div>
+      </div>
+
+      <div class="map-card reveal">
+        <!-- OpenStreetMap-Einbettung: datenschutzfreundlich, kein API-Key. -->
+        <iframe
+          title="Karte: Flugplatz Obermässing"
+          loading="lazy"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=11.254248619079592%2C49.112927908599254%2C11.325917243957521%2C49.13741730707913&amp;layer=mapnik&amp;marker=49.12517411964987%2C11.290082931518555">
+        </iframe>
+        <div class="map-foot">
+          <a class="btn btn-primary" style="padding:.5em 1em;font-size:.85rem"
+             href="https://www.openstreetmap.org/?mlat=49.1249064&mlon=11.2895809#map=15/49.1249064/11.2895809"
+             target="_blank" rel="noopener">Route planen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== MITGLIED WERDEN ===================== -->
 <section class="section" id="mitglied">
   <div class="wrap">
@@ -455,75 +522,6 @@ img{max-width:100%;display:block}
       <a class="btn btn-dark" href="#" data-placeholder>Aufnahmeantrag herunterladen (PDF)</a>
       <a class="btn btn-primary" href="kontakt.html">Jetzt anfragen</a>
       <span class="steps-note">Jugendliche unter 18 brauchen die Unterschrift eines Erziehungsberechtigten.</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== ÜBER DEN VEREIN ===================== -->
-<section class="section" id="verein" style="background:#fff;border-block:1px solid var(--line)">
-  <div class="wrap about">
-    <div class="reveal">
-      <span class="eyebrow">Über uns</span>
-      <h2>Eine Werkstatt, ein Platz, eine Leidenschaft</h2>
-      <p>Beim Modellsportverein Obermässing treffen sich Menschen, die etwas mit den Händen bauen und in die Luft bringen wollen. Segler, Motormaschinen, Elektroflieger. Von der fertigen Schaumwaffel bis zum Eigenbau aus Balsa und Sperrholz ist alles dabei.</p>
-      <p>Wir sind ein überschaubarer Verein, in dem jeder jeden kennt. Genau das ist der Vorteil: Wer anfängt, fliegt nicht allein, sondern bekommt jemanden an die Seite, der schon ein paar Crashs hinter sich hat.</p>
-      <div class="tags">
-        <span class="tag">Segelflug</span>
-        <span class="tag">Elektroflug</span>
-        <span class="tag">Verbrenner</span>
-        <span class="tag">Eigenbau</span>
-        <span class="tag">Jugendförderung?</span>
-      </div>
-    </div>
-    <div class="photo reveal">
-	  <img src="platz.jpg" alt="Ein winderschönes Modellflugzeug am Hofberg" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px;">
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FLUGPLATZ + KARTE ===================== -->
-<section class="section" id="flugplatz">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Der Flugplatz</span>
-      <h2>So findest du zu uns</h2>
-      <p>Unser Platz thront auf dem Hofberg – ideal zum Fliegen, weniger ideal zum Finden. Darum hier ganz genau.</p>
-      <p>Kleiner Insider-Tipp: Wer uns mit dem Fahrrad besuchen will, sollte Waden aus Stahl oder einen E-Motor mitbringen!</p>
-    </div>
-
-    <div class="field">
-      <div class="field-info reveal">
-        <div class="rule">
-          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><b>Adresse / Anfahrt</b><span>Hofbergstraße, 91171 Greding-Obermässing. Vor der Burg scharfe Rechtskurve, 1000&nbsp;m am Waldrand entlang &#8230</span></div>
-        </div>
-        <div class="rule">
-          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-          <div><b>Flugzeiten</b><span>Mo–Sa nach Lärmschutz?; Was sagt die Platzordnung?</span></div>
-        </div>
-        <div class="rule">
-          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-6 0v4"/><rect x="5" y="9" width="14" height="11" rx="2"/></svg></span>
-          <div><b>Vor dem ersten Flug</b><span>Gültige Modellflug-Versicherung und ggf. Kenntnisnachweis (EU-Drohnenverordnung). Beides organisieren wir über den Dachverband.</span></div>
-        </div>
-        <div class="rule">
-          <span class="ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2Z"/></svg></span>
-          <div><b>Gäste willkommen</b><span>Zuschauen ist jederzeit erlaubt. An Flugtagen (Sonntag Vormittag) ist fast immer jemand da, der gern erklärt.</span></div>
-        </div>
-      </div>
-
-      <div class="map-card reveal">
-        <!-- OpenStreetMap-Einbettung: datenschutzfreundlich, kein API-Key. -->
-        <iframe
-          title="Karte: Flugplatz Obermässing"
-          loading="lazy"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=11.254248619079592%2C49.112927908599254%2C11.325917243957521%2C49.13741730707913&amp;layer=mapnik&amp;marker=49.12517411964987%2C11.290082931518555">
-        </iframe>
-        <div class="map-foot">
-          <a class="btn btn-primary" style="padding:.5em 1em;font-size:.85rem"
-             href="https://www.openstreetmap.org/?mlat=49.1249064&mlon=11.2895809#map=15/49.1249064/11.2895809"
-             target="_blank" rel="noopener">Route planen ↗</a>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -603,8 +601,8 @@ img{max-width:100%;display:block}
     <div class="legal">
       <span>© <span id="year"></span> Modellsportverein Obermässing e.&nbsp;V.</span>
       <span>
-        <a href="#" data-placeholder>Impressum</a> ·
-        <a href="#" data-placeholder>Datenschutz</a>
+        <a href="impressum.html">Impressum</a> ·
+        <a href="datenschutz.html">Datenschutz</a>
       </span>
     </div>
   </div>

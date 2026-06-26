@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<!-- Schützt vor Suchmaschinen (wie Startseite) – später entfernen, wenn die Seite gefunden werden soll -->
+<meta name="robots" content="noindex, nofollow">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Impressum – Modellsportverein Obermässing e. V.</title>
+<meta name="description" content="Impressum des Modellsportvereins Obermässing e. V. – Anbieterkennzeichnung gemäß § 5 DDG.">
+
+<!-- Lokal gehostete Schriften (kein Google-Link mehr) -->
+<link rel="stylesheet" href="fonts.css">
+<style>
+/* =================================================================
+   FARBEN & TOKENS  (identisch zu index.html / kontakt.html / datenschutz.html)
+   ================================================================= */
+:root{
+  --sky-top:#0c2a4d; --sky-mid:#1a5680; --sky-low:#5e9cc0; --horizon:#f4b15a;
+  --orange:#ef8a1c; --orange-deep:#d9700a; --teal:#2ba9b8;
+  --ink:#10263b; --ink-soft:#46596d; --paper:#fbf7f0; --cloud:#ffffff; --line:#e8ddcd;
+  --good:#2f9e54; --warn:#e0982a; --bad:#d6483b;
+  --maxw:1180px; --r:16px; --shadow:0 18px 40px -22px rgba(16,38,59,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,.display{font-family:"Archivo",sans-serif;line-height:1.05;letter-spacing:-.01em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.mono{font-family:"IBM Plex Mono",monospace}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px}
+
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange-deep);font-weight:600;display:inline-flex;align-items:center;gap:.6em;}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--orange);display:inline-block}
+
+.btn{display:inline-flex;align-items:center;gap:.5em;font-family:"Archivo",sans-serif;font-weight:700;font-size:.98rem;padding:.85em 1.5em;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 10px 22px -10px rgba(239,138,28,.8)}
+.btn-primary:hover{background:var(--orange-deep);transform:translateY(-2px)}
+
+/* ===================== KOPFZEILE / NAVIGATION ===================== */
+.site-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.brand .fallback-logo{width:46px;height:46px;border-radius:50%;background:var(--orange);display:grid;place-items:center;color:#fff;font-family:"Archivo";font-weight:800;font-size:1.1rem;}
+.brand b{font-family:"Archivo";font-weight:800;font-size:1.02rem;letter-spacing:-.02em;line-height:1.05}
+.brand span{display:block;font-size:.68rem;color:var(--ink-soft);font-weight:500;letter-spacing:.04em}
+.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--ink);transition:color .15s}
+.nav-links a:hover{color:var(--orange-deep)}
+.nav .btn{padding:.6em 1.2em;font-size:.9rem}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:.2s}
+
+/* ===================== SEITENKOPF (wie kontakt.html) ===================== */
+.subhero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(180deg,var(--sky-top) 0%,var(--sky-mid) 60%,var(--sky-low) 100%);padding-block:64px 88px;}
+.subhero::before{content:"";position:absolute;right:-6%;top:-40%;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(244,177,90,.55),rgba(244,177,90,0) 68%);pointer-events:none;}
+.subhero .eyebrow{color:#ffd9a6}
+.subhero .eyebrow::before{background:var(--horizon)}
+.subhero h1{font-size:clamp(2rem,5vw,3.1rem);margin:.35em 0 .25em}
+.subhero p.lead{max-width:40em;color:rgba(255,255,255,.9);font-size:1.08rem}
+.subhero .plane{position:absolute;left:8%;bottom:26px;opacity:.9}
+@media (max-width:1080px){.subhero .plane{display:none}}
+
+/* ===================== RECHTSTEXT ===================== */
+.legal-wrap{margin-top:-56px;position:relative;z-index:2;padding-bottom:80px}
+.legal-card{background:var(--cloud);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:48px 52px;max-width:920px;margin-inline:auto;}
+@media (max-width:680px){.legal-card{padding:30px 22px}}
+
+.legal-card .stand{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft);margin-bottom:28px}
+
+/* Bearbeitungs-Hinweis – beim Ausfüllen entfernen */
+.todo{background:#fff7ec;border:1px solid #f3d9ad;border-left:4px solid var(--orange);border-radius:10px;padding:16px 18px;margin-bottom:32px;font-size:.9rem;color:#7a5410}
+.todo b{font-family:"Archivo";display:block;margin-bottom:6px;color:var(--orange-deep)}
+
+.legal-card h2{font-size:1.32rem;margin:38px 0 12px;padding-top:14px;border-top:1px solid var(--line)}
+.legal-card h2:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.legal-card h3{font-size:1.04rem;margin:22px 0 8px;color:var(--ink)}
+.legal-card p{color:var(--ink-soft);margin-bottom:14px}
+.legal-card ul{color:var(--ink-soft);margin:0 0 14px 0;padding-left:22px}
+.legal-card li{margin-bottom:6px}
+.legal-card a{color:var(--orange-deep);text-decoration:underline;text-underline-offset:2px}
+.legal-card a:hover{color:var(--orange)}
+.legal-card strong{color:var(--ink)}
+.legal-card .ph{background:rgba(214,72,59,.1);color:#a32a1f;font-family:"IBM Plex Mono",monospace;font-size:.86em;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.legal-card .opt{font-size:.8em;font-family:"IBM Plex Mono",monospace;color:var(--ink-soft);letter-spacing:.03em}
+
+/* Adressblock */
+.addr{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin-bottom:14px;line-height:1.8}
+
+/* ===================== FUSSZEILE ===================== */
+.footer{background:var(--ink);color:rgba(255,255,255,.75);padding-block:56px 28px}
+.footer .grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer h4{font-family:"Archivo";color:#fff;font-size:.95rem;margin-bottom:16px;letter-spacing:.02em}
+.footer a{text-decoration:none;color:rgba(255,255,255,.72);font-size:.92rem;display:block;padding:5px 0;transition:color .15s}
+.footer a:hover{color:var(--orange)}
+.footer .foot-brand p{font-size:.92rem;margin-top:14px;max-width:26em}
+.footer .foot-brand .brand b{color:#fff}
+.footer .foot-brand .brand span{color:rgba(255,255,255,.6)}
+.footer .legal{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.5)}
+.footer .legal a{display:inline;color:rgba(255,255,255,.6)}
+.footer .legal a[aria-current]{color:#fff}
+
+@media (max-width:920px){.footer .grid{grid-template-columns:1fr 1fr}}
+@media (max-width:680px){
+  .nav-links{position:fixed;top:72px;left:0;right:0;background:var(--paper);flex-direction:column;gap:0;align-items:stretch;padding:8px 24px 24px;border-top:1px solid var(--line);max-height:calc(100dvh - 72px);overflow-y:auto;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s ease, visibility .2s ease}
+  .nav-links.open{opacity:1;visibility:visible;pointer-events:auto}
+  .nav-links a{padding:14px 0}
+  .nav-links .btn{margin-top:12px;justify-content:center}
+  .nav-toggle{display:block}
+  .footer .grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Modellsportverein Obermässing – Startseite">
+      <img src="logo.jpg" alt="Vereinslogo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+      <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navlinks">
+        <li><a href="index.html#verein">Verein</a></li>
+        <li><a href="index.html#mitglied">Mitglied werden</a></li>
+        <li><a href="index.html#flugplatz">Flugplatz</a></li>
+        <li><a href="index.html#termine">Termine</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+        <li><a class="btn btn-primary" href="index.html#mitglied">Schnuppern&nbsp;→</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navtoggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ===================== SEITENKOPF ===================== -->
+  <section class="subhero">
+    <svg class="plane" width="70" height="28" viewBox="0 0 74 30" aria-hidden="true">
+      <path d="M2 16 L46 13 L60 4 L64 5 L56 14 L70 13 L73 15 L70 17 L56 16 L64 26 L60 27 L46 17 L2 17 Z" fill="#ffffff" opacity=".92"/>
+    </svg>
+    <div class="wrap">
+      <span class="eyebrow">Rechtliches</span>
+      <h1>Impressum</h1>
+      <p class="lead">Anbieterkennzeichnung gemäß § 5 Digitale-Dienste-Gesetz (DDG).</p>
+    </div>
+  </section>
+
+  <!-- ===================== RECHTSTEXT ===================== -->
+  <div class="wrap legal-wrap">
+    <div class="legal-card">
+
+      <p class="stand">Stand: Juni 2026</p>
+
+      <!--
+      <div class="todo">
+        Bitte alle <span style="color:#a32a1f;font-family:'IBM Plex Mono',monospace;">rot markierten Platzhalter</span> ausfüllen – vor allem die <strong>ladungsfähige Anschrift</strong>, den <strong>2.&nbsp;Vorstand</strong> sowie <strong>Registergericht und Registernummer</strong> (stehen auf eurem Vereinsregisterauszug). Angaben mit dem Vermerk „nur falls vorhanden / zutreffend“ nur eintragen, wenn sie auf den Verein zutreffen, sonst die ganze Zeile löschen. <strong>Im Zweifel anwaltlich oder über den Dachverband prüfen lassen.
+      </div>
+	   -->
+
+      <!-- 1 -->
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <div class="addr">
+        <strong>Modellsportverein Obermässing e.&nbsp;V.</strong><br>
+        <span class="ph">[Straße und Hausnummer]</span><br>
+        <span class="ph">[PLZ Ort]</span><br>
+        Deutschland
+      </div>
+      <p class="opt">Hinweis: Eine ladungsfähige Anschrift ist Pflicht. Ein Postfach genügt nicht. Es muss eine echte Hausanschrift sein (z.&nbsp;B. die des 1.&nbsp;Vorstands oder des Vereinssitzes).</p>
+
+      <!-- 2 -->
+      <h2>Vertreten durch den Vorstand</h2>
+      <p>Vertretungsberechtigt im Sinne des § 26 BGB ist der Vorstand:</p>
+      <ul>
+        <li>1.&nbsp;Vorstand: <strong><span class="ph">[Vorname Nachname]</span></li>
+        <li>2.&nbsp;Vorstand: <strong><span class="ph">[Vorname Nachname]</span></li>
+      </ul>
+      <p class="opt">ggf. weitere Vorstandsmitglieder ergänzen.</p>
+
+      <!-- 3 -->
+      <h2>Kontakt</h2>
+      <div class="addr">
+        E-Mail: <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a><br>
+        Telefon: <span class="ph">[Telefonnummer]</span><br>
+        Kontaktformular: <a href="kontakt.html">msv-obermaessing.de/kontakt</a>
+      </div>
+      <p class="opt">§ 5 DDG verlangt neben der E-Mail eine zweite Möglichkeit zur schnellen Kontaktaufnahme. Eine Telefonnummer ist der Klassiker; ist keine vorhanden, kann auch das Kontaktformular als zweiter Weg dienen – dann die Telefonzeile löschen.</p>
+
+      <!-- 4 -->
+      <h2>Registereintrag</h2>
+      <div class="addr">
+        Eintragung im Vereinsregister<br>
+        Registergericht: Amtsgericht <span class="ph">[Ort]</span><br>
+        Registernummer: <span class="ph">VR [Nummer]</span>
+      </div>
+
+      <!-- 5 -->
+      <h2>Umsatzsteuer-ID <span class="opt">(nur falls vorhanden)</span></h2>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27&nbsp;a Umsatzsteuergesetz: <span class="ph">[USt-IdNr. oder ganze Rubrik löschen]</span></p>
+
+      <!-- 6 -->
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <div class="addr">
+        [Vorname Nachname]<br>
+        <span class="ph">[Anschrift wie oben]</span>
+      </div>
+      <p class="opt">Diese Angabe ist erforderlich, sobald die Seite redaktionelle Inhalte enthält (z.&nbsp;B. Berichte, Neuigkeiten). Verantwortlich ist üblicherweise ein benanntes Vorstandsmitglied mit ladungsfähiger Anschrift.</p>
+
+      <!-- 7 -->
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      <p class="opt">Dieser Hinweis ist für einen Verein ohne Verbrauchergeschäfte rechtlich meist nicht zwingend, aber unschädlich. Wichtig: Es darf <strong>kein</strong> Link zur früheren EU-„OS-Plattform“ mehr enthalten sein – die wurde zum 20.&nbsp;Juli 2025 abgeschaltet.</p>
+
+      <!-- 8 -->
+      <h2>Haftung für Inhalte</h2>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 DDG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
+      <p>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden entsprechender Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
+
+      <!-- 9 -->
+      <h2>Haftung für Links</h2>
+      <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</p>
+      <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+
+      <!-- 10 -->
+      <h2>Urheberrecht</h2>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+      <p>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Das Kartenmaterial stammt von OpenStreetMap (© OpenStreetMap-Mitwirkende, ODbL). Solltest du trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir solche Inhalte umgehend entfernen.</p>
+
+    </div>
+  </div>
+</main>
+
+<!-- ===================== FUSSZEILE ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html">
+          <img src="logo.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'fallback-logo',textContent:'MSV'}))">
+          <span><b>MSV Obermässing</b><span>Modellsportverein e.&nbsp;V.</span></span>
+        </a>
+        <p>Modellflug, Eigenbau und ein Platz unter offenem Himmel, mitten in Mittelfranken.</p>
+      </div>
+      <div>
+        <h4>Verein</h4>
+        <a href="index.html#verein">Über uns</a>
+        <a href="index.html#mitglied">Mitglied werden</a>
+        <a href="index.html#termine">Termine</a>
+        <a href="index.html#" data-placeholder>Vorstand</a>
+      </div>
+      <div>
+        <h4>Am Platz</h4>
+        <a href="index.html#flugplatz">Anfahrt</a>
+        <a href="index.html#" data-placeholder>Platzordnung</a>
+        <a href="index.html#flugwetter">Flugwetter</a>
+        <a href="index.html#" data-placeholder>Sicherheit</a>
+      </div>
+      <div>
+        <h4>Kontakt</h4>
+        <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a>
+        <a href="index.html#" data-placeholder>Facebook-Gruppe</a>
+        <a href="kontakt.html">Anfrage stellen</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="year"></span> Modellsportverein Obermässing e.&nbsp;V.</span>
+      <span>
+        <a href="impressum.html" aria-current="page">Impressum</a> ·
+        <a href="datenschutz.html">Datenschutz</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Mobiles Menü ===== */
+const toggle = document.getElementById("navtoggle");
+const links = document.getElementById("navlinks");
+toggle.addEventListener("click", ()=>{
+  const open = links.classList.toggle("open");
+  toggle.setAttribute("aria-expanded", open);
+});
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>links.classList.remove("open")));
+
+/* Jahr in der Fußzeile */
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Platzhalter-Links abfangen */
+document.querySelectorAll('[data-placeholder]').forEach(a=>{
+  a.addEventListener("click",e=>e.preventDefault());
+});
+</script>
+</body>
+</html>

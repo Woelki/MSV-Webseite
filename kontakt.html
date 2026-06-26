@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<!-- Uploadcare File Uploader -->
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/uc-file-uploader-regular.min.css">
-<script type="module">
-  import * as UC from "https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@v1/web/file-uploader.min.js";
-  UC.defineComponents(UC);
-</script>
 <!-- Schützt vor Suchmaschinen (wie Startseite) – später entfernen, wenn die Seite gefunden werden soll -->
 <meta name="robots" content="noindex, nofollow">
 <meta charset="UTF-8">
@@ -15,9 +8,7 @@
 <title>Kontakt – Modellsportverein Obermässing e. V.</title>
 <meta name="description" content="Kontakt zum Modellsportverein Obermässing e. V.: Schreib uns für Schnupperfliegen, Mitgliedschaft oder allgemeine Fragen. Formular mit Datei-Anhang.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 
 <style>
 
@@ -436,8 +427,8 @@ img{max-width:100%;display:block}
     <nav>
       <ul class="nav-links" id="navlinks">
         <li><a href="index.html#verein">Verein</a></li>
-        <li><a href="index.html#mitglied">Mitglied werden</a></li>
         <li><a href="index.html#flugplatz">Flugplatz</a></li>
+        <li><a href="index.html#mitglied">Mitglied werden</a></li>
         <li><a href="index.html#termine">Termine</a></li>
         <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
         <li><a class="btn btn-primary" href="index.html#mitglied">Schnuppern&nbsp;→</a></li>
@@ -550,7 +541,7 @@ img{max-width:100%;display:block}
         <ul class="info-list">
           <li>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
-            <span class="t"><b>E-Mail</b><a href="mailto:PLATZHALTER-verein@example.de">PLATZHALTER-verein@example.de</a></span>
+            <span class="t"><b>E-Mail</b><a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a></span>
           </li>
           <li>
             <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -597,7 +588,7 @@ img{max-width:100%;display:block}
       </div>
       <div>
         <h4>Kontakt</h4>
-        <a href="mailto:PLATZHALTER-verein@example.de">PLATZHALTER-verein@example.de</a>
+        <a href="mailto:info@msv-obermaessing.de">info@msv-obermaessing.de</a>
         <a href="index.html#" data-placeholder>Facebook-Gruppe</a>
         <a href="kontakt.html">Anfrage stellen</a>
       </div>
@@ -605,8 +596,8 @@ img{max-width:100%;display:block}
     <div class="legal">
       <span>© <span id="year"></span> Modellsportverein Obermässing e.&nbsp;V.</span>
       <span>
-        <a href="index.html#" data-placeholder>Impressum</a> ·
-        <a href="index.html#" data-placeholder>Datenschutz</a>
+        <a href="impressum.html">Impressum</a> ·
+        <a href="datenschutz.html">Datenschutz</a>
       </span>
     </div>
   </div>
